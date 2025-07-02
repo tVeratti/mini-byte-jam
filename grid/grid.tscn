@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://blho1i521pjl4"]
+
+[ext_resource type="Script" uid="uid://7tcvy5vxmsor" path="res://grid/grid.gd" id="1_ebq2e"]
+[ext_resource type="Script" uid="uid://dpw6tkwdl1sx5" path="res://grid/grid_generator.gd" id="2_65i6o"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ebq2e"]
+noise_type = 0
+seed = 12
+frequency = 0.0141
+fractal_type = 2
+fractal_octaves = 3
+fractal_gain = -0.295
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_65i6o"]
+noise = SubResource("FastNoiseLite_ebq2e")
+
+[node name="Grid" type="GridMap"]
+script = ExtResource("1_ebq2e")
+
+[node name="GridGenerator" type="Node" parent="." node_paths=PackedStringArray("noise_texture")]
+script = ExtResource("2_65i6o")
+noise_texture = NodePath("Noise")
+metadata/_custom_type_script = "uid://dpw6tkwdl1sx5"
+
+[node name="Noise" type="TextureRect" parent="GridGenerator"]
+unique_name_in_owner = true
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("NoiseTexture2D_65i6o")

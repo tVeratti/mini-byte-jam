@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://nks0xww7yaic"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hcfg3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnqi0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_prbok"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwoak"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1qtu"]
+
+[node name="GridMeshLibrary" type="Node3D"]
+
+[node name="Unrevealed" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hcfg3")
+
+[node name="Buff" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nnqi0")
+
+[node name="Heal" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_prbok")
+
+[node name="Battle" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wwoak")
+
+[node name="Scout" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_p1qtu")
