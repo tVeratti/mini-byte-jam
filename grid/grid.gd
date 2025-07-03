@@ -2,6 +2,8 @@
 class_name TileGrid
 extends GridMap
 
+signal tile_visited(coordinates:Vector3)
+
 
 const TILE_IDS:Dictionary[int, Tile.Types] = {
 	0: Tile.Types.VISITED,
@@ -20,8 +22,16 @@ var button:Callable = generate_tiles
 @onready var grid_generator:GridGenerator = %GridGenerator
 
 
+func _ready() -> void:
+	tile_visited.connect(_on_tile_visited)
+
+
 func generate_tiles() -> void:
 	var tiles: = grid_generator.generate_tiles()
 	for coord in tiles.keys():
 		var type:Tile.Types = tiles[coord]
 		set_cell_item(Vector3i(coord.x, 0, coord.y), TILE_IDS[type])
+
+
+func _on_tile_visited(coordinates:Vector3) -> void:
+	set_cell_item(coordinates, 0)

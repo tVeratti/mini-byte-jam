@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bltwcei6bd7hh"]
+[gd_scene load_steps=12 format=3 uid="uid://bltwcei6bd7hh"]
 
 [ext_resource type="Script" uid="uid://crielhnbmxmka" path="res://player/input_component.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bscmwh0y18f5x" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://ci24nk0o7cd15" path="res://player/player_stats.gd" id="3_rgyib"]
 [ext_resource type="Script" uid="uid://d37xvjqwo7p6g" path="res://player/player_state_machine/player_state_machine.gd" id="3_yw30f"]
-[ext_resource type="Script" uid="uid://d325fhdya61qw" path="res://player/player_state_machine/player_state/idle.gd" id="4_qjkh3"]
-[ext_resource type="Script" uid="uid://ck373hlpxuirp" path="res://player/player_state_machine/player_state/move_intent.gd" id="5_boad6"]
-[ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_state/move.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://d325fhdya61qw" path="res://player/player_state_machine/player_states/idle.gd" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://ck373hlpxuirp" path="res://player/player_state_machine/player_states/move_intent.gd" id="5_boad6"]
+[ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_states/move.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://d1biy3n4gpulo" path="res://player/direction_intent_marker.gd" id="6_g6k8r"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
@@ -15,6 +16,9 @@ height = 0.8
 [sub_resource type="PrismMesh" id="PrismMesh_qjkh3"]
 size = Vector3(0.2, 0.2, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boad6"]
+shading_mode = 0
+
 [node name="Player" type="MeshInstance3D"]
 mesh = SubResource("SphereMesh_kqu6x")
 script = ExtResource("1_rkbax")
@@ -22,6 +26,10 @@ script = ExtResource("1_rkbax")
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("1_oul6g")
 metadata/_custom_type_script = "uid://crielhnbmxmka"
+
+[node name="PlayerStats" type="Node" parent="."]
+script = ExtResource("3_rgyib")
+metadata/_custom_type_script = "uid://ci24nk0o7cd15"
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
@@ -42,6 +50,7 @@ script = ExtResource("5_qjkh3")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.597404, 0, 0)
 mesh = SubResource("PrismMesh_qjkh3")
+surface_material_override/0 = SubResource("StandardMaterial3D_boad6")
 script = ExtResource("6_g6k8r")
 metadata/_custom_type_script = "uid://d1biy3n4gpulo"
 
