@@ -3,12 +3,19 @@ class_name GridGenerator
 extends Node
 
 
-const NOISE_THRESHOLDS:Dictionary[float, Tile.Types] = {
-	0.3: Tile.Types.BUFF_ATTACK,
-	0.6: Tile.Types.BUFF_STAMINA,
-	0.8: Tile.Types.BATTLE,
-	0.9: Tile.Types.HEAL,
-	1.0: Tile.Types.SCOUT
+enum TileGroups { BUFF, UTILITY, DANGER }
+const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
+	0.70: TileGroups.BUFF,
+	0.92: TileGroups.DANGER,
+	1.00: TileGroups.UTILITY
+}
+
+const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
+	TileGroups.BUFF: [
+		Tile.Types.BUFF_ATTACK,
+		Tile.Types.BUFF_STAMINA],
+	TileGroups.DANGER: [Tile.Types.BATTLE],
+	TileGroups.UTILITY: [Tile.Types.HEAL, Tile.Types.SCOUT]
 }
 
 
@@ -38,10 +45,7 @@ func generate_tiles() -> Dictionary[Vector2, Tile.Types]:
 func _get_type_from_noise(noise_value:float, sorted_thresholds:Array) -> Tile.Types:
 	for threshold in sorted_thresholds:
 		if noise_value <= threshold:
-			var type:Tile.Types = NOISE_THRESHOLDS[threshold]
-			if [Tile.Types.BUFF_ATTACK, Tile.Types.BUFF_STAMINA].has(type):
-				return [Tile.Types.BUFF_ATTACK, Tile.Types.BUFF_STAMINA].pick_random()
-			else:
-				return type
+			var group:TileGroups = NOISE_THRESHOLDS[threshold]
+			return TILE_GROUP_MAP[group].pick_random()
 	
 	return Tile.Types.VISITED
