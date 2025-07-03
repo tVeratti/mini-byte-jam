@@ -30,8 +30,7 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 	steps_taken += 1
 	
 	var grid:TileGrid = get_tree().get_first_node_in_group("tile_grid")
-	var tile_id: = grid.get_cell_item(coordinates)
-	var tile_type: = TileGrid.TILE_IDS[tile_id]
+	var tile_type: = grid.tiles[coordinates]
 	
 	match(tile_type):
 		Tile.Types.VISITED:
@@ -47,9 +46,10 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 			player_stats.heal(1.0) # TODO: Actual amount
 		Tile.Types.SCOUT:
 			print("scout")
+			grid.radius_scouted.emit(coordinates, 3)
 			pass # TODO: Reveal nearby tile types
 		Tile.Types.BATTLE:
 			print("battle")
 			pass # TODO: Open skillcheck UI
 	
-	grid.tile_visited.emit(coordinates)
+	grid.tile_entered.emit(coordinates)

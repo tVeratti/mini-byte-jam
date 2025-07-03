@@ -23,8 +23,8 @@ const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
 @export var noise_texture:FastNoiseLite
 
 
-func generate_tiles() -> Dictionary[Vector2, Tile.Types]:
-	var tiles:Dictionary[Vector2, Tile.Types] = {}
+func generate_tiles() -> Dictionary[Vector3, Tile.Types]:
+	var tiles:Dictionary[Vector3, Tile.Types] = {}
 	
 	noise_texture.seed = randi_range(0, 999)
 	
@@ -33,7 +33,7 @@ func generate_tiles() -> Dictionary[Vector2, Tile.Types]:
 	
 	for x in range(grid_size):
 		for y in range(grid_size):
-			var coords: = Vector2(x, y)
+			var coords: = Vector3(x, 0, y)
 			var noise_value: = noise_texture.get_noise_2d(x, y)
 			var normalized_value = remap(noise_value, -1.0, 1.0, 0.0, 1.0)
 			var effect: = _get_type_from_noise(normalized_value, sorted_thresholds)

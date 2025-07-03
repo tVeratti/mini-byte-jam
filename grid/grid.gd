@@ -2,7 +2,8 @@
 class_name TileGrid
 extends GridMap
 
-signal tile_visited(coordinates:Vector3)
+signal tile_entered(coordinates:Vector3)
+signal radius_scouted(center:Vector3, radius:int)
 
 
 const TILE_IDS:Dictionary[int, Tile.Types] = {
@@ -19,19 +20,59 @@ const TILE_IDS:Dictionary[int, Tile.Types] = {
 var button:Callable = generate_tiles
 
 
+var tiles:Dictionary[Vector3, Tile.Types] = {}
+
+
 @onready var grid_generator:GridGenerator = %GridGenerator
 
 
 func _ready() -> void:
-	tile_visited.connect(_on_tile_visited)
+	tile_entered.connect(_on_tile_entered)
+	radius_scouted.connect(_on_radius_scouted)
 
 
 func generate_tiles() -> void:
-	var tiles: = grid_generator.generate_tiles()
-	for coord in tiles.keys():
-		var type:Tile.Types = tiles[coord]
-		set_cell_item(Vector3i(coord.x, 0, coord.y), TILE_IDS[type])
+	clear()
+	
+	tiles = grid_generator.generate_tiles()
+	#for coord in tiles.keys():
+		#var type:Tile.Types = tiles[coord]
+		# Start hidden (set as nothing)
+		#set_cell_item(Vector3i(coord.x, 0, coord.y), -1)
 
 
-func _on_tile_visited(coordinates:Vector3) -> void:
-	set_cell_item(coordinates, 0)
+func _show_tiles(center:Vector3, radius:int) -> void:
+	var directions = [
+		Vector3.FORWARD,
+		Vector3.BACK,
+		Vector3.RIGHT,
+		Vector3.LEFT,
+		# Diagonal Directions
+		Vector3.FORWARD + Vector3.LEFT,
+		Vector3.FORWARD + Vector3.RIGHT,
+		Vector3.BACK + Vector3.LEFT,
+		Vector3.BACK + Vector3.RIGHT ]
+	
+	for r in range(radius):
+		for direction in directions:
+			var coordinates:Vector3 = center + (direction * (r + 1))
+			var tile_type:Tile.Types = tiles[coordinates]
+			var tile_id:int = TILE_IDS[tile_type]
+			
+			set_cell_item(coordinates, tile_id)
+
+
+func _on_tile_entered(coordinates:Vector3) -> void:
+	# TODO: Resolve tile effect
+	
+	radius_scouted.emit(coordinates, 1)
+	
+	# Set the current location to `VISITED` so it doesn't trigger again later
+	var visited_id: = TILE_IDS[Tile.Types.VISITED]
+	set_cell_item(coordinates, visited_id)
+	tiles[coordinates] = Tile.Types.VISITED
+	
+
+
+func _on_radius_scouted(center:Vector3, radius:int) -> void:
+	_show_tiles(center, radius)
