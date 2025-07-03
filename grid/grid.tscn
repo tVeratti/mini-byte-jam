@@ -11,7 +11,7 @@ fractal_type = 2
 fractal_octaves = 1
 domain_warp_type = 1
 
-[node name="Grid" type="GridMap"]
+[node name="Grid" type="GridMap" groups=["tile_grid"]]
 mesh_library = ExtResource("1_y3jnv")
 cell_size = Vector3(1.1, 1, 1.1)
 data = {

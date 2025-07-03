@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bltwcei6bd7hh"]
+[gd_scene load_steps=9 format=3 uid="uid://bltwcei6bd7hh"]
 
 [ext_resource type="Script" uid="uid://crielhnbmxmka" path="res://player/input_component.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bscmwh0y18f5x" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://d37xvjqwo7p6g" path="res://player/player_state_machine/player_state_machine.gd" id="3_yw30f"]
 [ext_resource type="Script" uid="uid://d325fhdya61qw" path="res://player/player_state_machine/player_state/idle.gd" id="4_qjkh3"]
-[ext_resource type="Script" uid="uid://ck373hlpxuirp" path="res://player/player_state_machine/player_state/move_intent.gd" id="5_boad6"]
 [ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_state/move.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://d1biy3n4gpulo" path="res://player/direction_intent_marker.gd" id="6_g6k8r"]
 
@@ -32,21 +31,17 @@ metadata/_custom_type_script = "uid://d37xvjqwo7p6g"
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_qjkh3")
 
-[node name="MoveIntent" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("5_boad6")
-
 [node name="Move" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_qjkh3")
 
 [node name="PlayerDirectionIntent" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.597404, 0, 0)
 mesh = SubResource("PrismMesh_qjkh3")
 script = ExtResource("6_g6k8r")
 metadata/_custom_type_script = "uid://d1biy3n4gpulo"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.536, -5)
+transform = Transform3D(1, 0, 0, 0, 0.883553, 0.468331, 0, -0.468331, 0.883553, 0, 5.53569, 5)
 current = true
 size = 10.0
 

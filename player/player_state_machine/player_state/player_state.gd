@@ -6,6 +6,7 @@ signal finished(next_state_path: String, data: Dictionary)
 
 
 const IDLE: = "Idle"
+const MOVE_INTENT: = "MoveIntent"
 const MOVE: = "Move"
 const BUFF: = "Buff"
 const HEAL: = "Heal"

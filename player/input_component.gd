@@ -22,12 +22,12 @@ func _process(_delta):
 func _get_direction() -> Vector3:
 	var move_direction: = Vector3.ZERO
 	
+	# Direction only allowed in one direction, no diagonal
 	if Input.is_action_pressed("move_forward"):
 		move_direction.z = 1
 	elif Input.is_action_pressed("move_backward"):
 		move_direction.z = -1
-	
-	if Input.is_action_pressed("move_left"):
+	elif Input.is_action_pressed("move_left"):
 		move_direction.x = 1
 	elif Input.is_action_pressed("move_right"):
 		move_direction.x = -1
