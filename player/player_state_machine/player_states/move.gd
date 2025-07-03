@@ -8,8 +8,13 @@ extends PlayerState
 var target_position:Vector3
 var next_tile_type:Tile.Types
 
+var queued_next_intent:Vector3
+
 
 func enter(_previous_state_path: String, data := {}) -> void:
+	queued_next_intent = Vector3.ZERO
+	player.input_component.direction_changed.connect(_on_direction_changed)
+	
 	var player_direction_intent:PlayerDirectionIntent = player.player_direction_intent
 	target_position = player_direction_intent.global_position
 	
@@ -21,4 +26,16 @@ func enter(_previous_state_path: String, data := {}) -> void:
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(player, "global_position", target_position, 0.5)
 	tween.tween_callback(func():
-		finished.emit(IDLE))
+		if queued_next_intent.is_zero_approx():
+			finished.emit(IDLE)
+		else:
+			finished.emit(MOVE_INTENT, { "initial_direction": queued_next_intent }))
+
+
+func exit() -> void:
+	player.input_component.direction_changed.disconnect(_on_direction_changed)
+
+
+func _on_direction_changed(direction:Vector3) -> void:
+	if not direction.is_zero_approx():
+		queued_next_intent = direction

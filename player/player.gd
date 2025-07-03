@@ -34,15 +34,22 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 	var tile_type: = TileGrid.TILE_IDS[tile_id]
 	
 	match(tile_type):
+		Tile.Types.VISITED:
+			print("visited")
 		Tile.Types.BUFF_ATTACK:
+			print("+ attack")
 			player_stats.attack += 1
 		Tile.Types.BUFF_STAMINA:
+			print("+ stamina")
 			player_stats.stamina += 1
 		Tile.Types.HEAL:
+			print("heal")
 			player_stats.heal(1.0) # TODO: Actual amount
 		Tile.Types.SCOUT:
+			print("scout")
 			pass # TODO: Reveal nearby tile types
 		Tile.Types.BATTLE:
+			print("battle")
 			pass # TODO: Open skillcheck UI
 	
 	grid.tile_visited.emit(coordinates)
