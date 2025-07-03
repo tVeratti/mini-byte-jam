@@ -20,10 +20,6 @@ var button:Callable = generate_tiles
 @onready var grid_generator:GridGenerator = %GridGenerator
 
 
-func _ready():
-	var tiles: = grid_generator.generate_tiles()
-
-
 func generate_tiles() -> void:
 	var tiles: = grid_generator.generate_tiles()
 	for coord in tiles.keys():

@@ -4,12 +4,12 @@ extends Node
 
 
 enum TileGroups { BUFF, UTILITY, DANGER }
+
 const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
 	0.70: TileGroups.BUFF,
 	0.92: TileGroups.DANGER,
 	1.00: TileGroups.UTILITY
 }
-
 const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
 	TileGroups.BUFF: [
 		Tile.Types.BUFF_ATTACK,

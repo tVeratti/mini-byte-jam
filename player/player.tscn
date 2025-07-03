@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bltwcei6bd7hh"]
+[gd_scene load_steps=7 format=3 uid="uid://bltwcei6bd7hh"]
 
 [ext_resource type="Script" uid="uid://crielhnbmxmka" path="res://player/input_component.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bscmwh0y18f5x" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://d37xvjqwo7p6g" path="res://player/player_state_machine/player_state_machine.gd" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://d325fhdya61qw" path="res://player/player_state_machine/player_state/idle.gd" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_state/move.gd" id="5_qjkh3"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
+radius = 0.4
+height = 0.8
 
 [node name="Player" type="MeshInstance3D"]
 mesh = SubResource("SphereMesh_kqu6x")
@@ -13,7 +18,25 @@ script = ExtResource("1_rkbax")
 script = ExtResource("1_oul6g")
 metadata/_custom_type_script = "uid://crielhnbmxmka"
 
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("3_yw30f")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://d37xvjqwo7p6g"
+
+[node name="Idle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_qjkh3")
+
+[node name="Move" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_qjkh3")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.883553, 0.468331, 0, -0.468331, 0.883553, 0, 5.53569, 5)
 current = true
 size = 10.0
+
+[node name="StateLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820143, 0)
+billboard = 1
+text = "IDLE"

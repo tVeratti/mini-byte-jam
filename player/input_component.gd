@@ -3,16 +3,20 @@ extends Node
 
 
 signal direction_changed(dir:Vector3)
+signal accepted
 
 
 var direction:Vector3
 
 
-func _process(delta):
+func _process(_delta):
 	var next_direction: = _get_direction()
 	if not next_direction.is_equal_approx(direction):
 		direction = next_direction
 		direction_changed.emit(direction)
+	
+	if Input.is_action_just_released("accept"):
+		accepted.emit()
 
 
 func _get_direction() -> Vector3:

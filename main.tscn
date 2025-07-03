@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://1430bwsidw41"]
+[gd_scene load_steps=5 format=3 uid="uid://1430bwsidw41"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://1dx483j3r4" path="res://grid_player_movement.gd" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bltwcei6bd7hh" path="res://player/player.tscn" id="3_lquwl"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
+
+[node name="GridPlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "grid")]
+script = ExtResource("2_lquwl")
+player = NodePath("../Player")
+grid = NodePath("../Grid")
+metadata/_custom_type_script = "uid://1dx483j3r4"
 
 [node name="Grid" parent="." instance=ExtResource("2_1bvp3")]
 unique_name_in_owner = true
