@@ -1,18 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://nks0xww7yaic"]
+[gd_scene load_steps=12 format=3 uid="uid://nks0xww7yaic"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hcfg3"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_nnqi0"]
+[sub_resource type="BoxMesh" id="BoxMesh_i1fj5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66i1r"]
 albedo_color = Color(0.392157, 0.423529, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnqi0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsvex"]
+albedo_color = Color(0.392157, 0.741176, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_prbok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1fj5"]
 albedo_color = Color(0.423529, 1, 0.462745, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_66i1r"]
+[sub_resource type="BoxMesh" id="BoxMesh_66i1r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fpve"]
 albedo_color = Color(1, 0.247059, 0.368627, 1)
@@ -27,16 +32,20 @@ albedo_color = Color(1, 1, 0.458824, 1)
 [node name="Unrevealed" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_hcfg3")
 
-[node name="Buff" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_nnqi0")
+[node name="BuffAttack" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_i1fj5")
 surface_material_override/0 = SubResource("StandardMaterial3D_66i1r")
+
+[node name="BuffStamina" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nnqi0")
+surface_material_override/0 = SubResource("StandardMaterial3D_xsvex")
 
 [node name="Heal" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_prbok")
 surface_material_override/0 = SubResource("StandardMaterial3D_i1fj5")
 
 [node name="Battle" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_66i1r")
+mesh = SubResource("BoxMesh_66i1r")
 surface_material_override/0 = SubResource("StandardMaterial3D_8fpve")
 
 [node name="Scout" type="MeshInstance3D" parent="."]

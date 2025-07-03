@@ -1,13 +1,15 @@
 @tool
+class_name TileGrid
 extends GridMap
 
 
 const TILE_IDS:Dictionary[int, Tile.Types] = {
 	0: Tile.Types.VISITED,
-	1: Tile.Types.BUFF,
-	2: Tile.Types.HEAL,
-	3: Tile.Types.BATTLE,
-	4: Tile.Types.SCOUT
+	1: Tile.Types.BUFF_ATTACK,
+	2: Tile.Types.BUFF_STAMINA,
+	3: Tile.Types.HEAL,
+	4: Tile.Types.BATTLE,
+	5: Tile.Types.SCOUT
 }
 
 
