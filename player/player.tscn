@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bltwcei6bd7hh"]
+[gd_scene load_steps=13 format=3 uid="uid://bltwcei6bd7hh"]
 
 [ext_resource type="Script" uid="uid://crielhnbmxmka" path="res://player/input_component.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bscmwh0y18f5x" path="res://player/player.gd" id="1_rkbax"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ck373hlpxuirp" path="res://player/player_state_machine/player_states/move_intent.gd" id="5_boad6"]
 [ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_states/move.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://d1biy3n4gpulo" path="res://player/direction_intent_marker.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://comhou0m6hmob" path="res://player/player_state_machine/player_states/battle.gd" id="8_hg6s5"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
 radius = 0.4
@@ -45,6 +46,9 @@ script = ExtResource("5_boad6")
 
 [node name="Move" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_qjkh3")
+
+[node name="Battle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_hg6s5")
 
 [node name="PlayerDirectionIntent" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
