@@ -9,6 +9,8 @@ signal health_zero
 const DEFAULT_HEALTH_MAX:int = 5
 
 
+var level:int = 1
+
 var attack:int = 1.0
 var stamina:int = 1.0
 
@@ -37,4 +39,9 @@ func buff_attack(amount:int) -> void:
 
 func buff_stamina(amount:int) -> void:
 	stamina += amount
+	stats_changed.emit()
+
+
+func level_up() -> void:
+	level += 1
 	stats_changed.emit()

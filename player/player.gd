@@ -14,9 +14,6 @@ signal coordinates_changed(coordinates:Vector3)
 @onready var camera_3d:Camera3D = $Camera3D
 
 
-var steps_taken:int = 0
-
-
 func _ready() -> void:
 	coordinates_changed.connect(_on_coordinates_changed)
 
@@ -27,7 +24,7 @@ func _process(_delta):
 
 
 func _on_coordinates_changed(coordinates:Vector3) -> void:
-	steps_taken += 1
+	player_stats.level_up()
 	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 	var tile_type: = grid.tiles[coordinates]

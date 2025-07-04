@@ -15,14 +15,15 @@ const MOVE_SPEED:float = 100.0
 enum Results { SUCCESS, RETRY, FAIL }
 
 
-@onready var track:ColorRect = %Track
+@onready var level: Label = %Level
+@onready var track:Panel = %Track
 @onready var stamina:ColorRect = %Stamina
 @onready var attack:ColorRect = %Attack
 @onready var input_container:MarginContainer = %InputContainer
 @onready var input:ColorRect = %Input
 
 
-var level:int = 1
+var battle_level:int = 1
 var player_stats:PlayerStats
 
 var has_started:bool = false
@@ -39,8 +40,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if has_started:
+		var move_speed:float = MOVE_SPEED * max(1, battle_level / 10.0)
 		var current_margin: = input_container.get_theme_constant("margin_left")
-		var next_margin:int = ceil(float(current_margin) + (MOVE_SPEED * delta))
+		var next_margin:int = ceil(float(current_margin) + (move_speed * delta))
 		input_container.add_theme_constant_override("margin_left", next_margin)
 		
 		if current_margin >= TRACK_WIDTH:
@@ -48,7 +50,9 @@ func _process(delta: float) -> void:
 
 
 func _set_target_sizes() -> void:
-	var weighted_level:float = level * LEVEL_WEIGHT
+	var weighted_level:float = battle_level * LEVEL_WEIGHT
+	level.text = "Level %3d" % int(battle_level)
+	
 	var attack_percentage:float = float(player_stats.attack) / weighted_level
 	var stamina_percentage:float = float(player_stats.stamina) / weighted_level
 	

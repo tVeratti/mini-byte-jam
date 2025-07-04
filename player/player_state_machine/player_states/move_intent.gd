@@ -37,4 +37,7 @@ func _on_direction_changed(direction:Vector3) -> void:
 
 
 func _on_accepted() -> void:
+	if player.player_direction_intent.next_tile_type == Tile.Types.VISITED:
+		return
+	
 	finished.emit(MOVE)

@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcvlm28nt0iwi"]
+[gd_scene load_steps=4 format=3 uid="uid://bcvlm28nt0iwi"]
 
 [ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://battle/battle.gd" id="1_mqutd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mqutd"]
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqutd"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 
 [node name="Battle" type="MarginContainer"]
 anchors_preset = 14
@@ -13,40 +24,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mqutd")
 
-[node name="TrackContainer" type="MarginContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Layout"]
+layout_mode = 2
+text = "Battle!"
+label_settings = SubResource("LabelSettings_mqutd")
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level 001"
+horizontal_alignment = 1
+
+[node name="TrackContainer" type="MarginContainer" parent="Layout"]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Track" type="ColorRect" parent="TrackContainer"]
+[node name="Track" type="Panel" parent="Layout/TrackContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mqutd")
 
-[node name="TargetContainer" type="MarginContainer" parent="TrackContainer"]
+[node name="TargetContainer" type="MarginContainer" parent="Layout/TrackContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
 
-[node name="Stamina" type="ColorRect" parent="TrackContainer/TargetContainer"]
+[node name="Stamina" type="ColorRect" parent="Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 color = Color(1, 0.784314, 0.286275, 1)
 
-[node name="Attack" type="ColorRect" parent="TrackContainer/TargetContainer"]
+[node name="Attack" type="ColorRect" parent="Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 color = Color(1, 0.168627, 0.203922, 1)
 
-[node name="InputContainer" type="MarginContainer" parent="TrackContainer"]
+[node name="InputContainer" type="MarginContainer" parent="Layout/TrackContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 0
 
-[node name="Input" type="ColorRect" parent="TrackContainer/InputContainer"]
+[node name="Input" type="ColorRect" parent="Layout/TrackContainer/InputContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2

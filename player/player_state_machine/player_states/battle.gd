@@ -16,7 +16,8 @@ func exit() -> void:
 func _on_battle_ended(result:Battle.Results) -> void:
 	match(result):
 		Battle.Results.SUCCESS:
-			print("battle success")
+			player.player_stats.buff_attack(1)
+			player.player_stats.buff_stamina(1)
 		Battle.Results.FAIL:
 			player.player_stats.take_damage(1)
 	
