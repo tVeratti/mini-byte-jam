@@ -6,6 +6,9 @@ extends GridMap
 signal tile_entered(coordinates:Vector3)
 signal radius_scouted(center:Vector3, radius:int)
 
+signal battle_started(level:int)
+signal battle_ended
+
 
 const TILE_IDS:Dictionary[int, Tile.Types] = {
 	0: Tile.Types.VISITED,
@@ -63,7 +66,10 @@ func _show_tiles(center:Vector3, radius:int) -> void:
 
 
 func _on_tile_entered(coordinates:Vector3) -> void:
-	# TODO: Resolve tile effect
+	var tile_type:Tile.Types = tiles[coordinates]
+	match(tile_type):
+		Tile.Types.BATTLE:
+			battle_started.emit(1)
 	
 	radius_scouted.emit(coordinates, 1)
 	

@@ -19,7 +19,7 @@ size = Vector3(0.2, 0.2, 0.1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boad6"]
 shading_mode = 0
 
-[node name="Player" type="MeshInstance3D"]
+[node name="Player" type="MeshInstance3D" groups=["player"]]
 mesh = SubResource("SphereMesh_kqu6x")
 script = ExtResource("1_rkbax")
 

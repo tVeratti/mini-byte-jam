@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcvlm28nt0iwi"]
+
+[ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://battle/battle.gd" id="1_mqutd"]
+
+[node name="Battle" type="MarginContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqutd")
+
+[node name="TrackContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Track" type="ColorRect" parent="TrackContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TargetContainer" type="MarginContainer" parent="TrackContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+
+[node name="Stamina" type="ColorRect" parent="TrackContainer/TargetContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(1, 0.784314, 0.286275, 1)
+
+[node name="Attack" type="ColorRect" parent="TrackContainer/TargetContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(1, 0.168627, 0.203922, 1)
+
+[node name="InputContainer" type="MarginContainer" parent="TrackContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="Input" type="ColorRect" parent="TrackContainer/InputContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0, 0, 0, 1)
