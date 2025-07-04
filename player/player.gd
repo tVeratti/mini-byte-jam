@@ -29,27 +29,22 @@ func _process(_delta):
 func _on_coordinates_changed(coordinates:Vector3) -> void:
 	steps_taken += 1
 	
-	var grid:TileGrid = get_tree().get_first_node_in_group("tile_grid")
+	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 	var tile_type: = grid.tiles[coordinates]
 	
 	match(tile_type):
 		Tile.Types.VISITED:
-			print("visited")
+			pass
 		Tile.Types.BUFF_ATTACK:
-			print("+ attack")
-			player_stats.attack += 1
+			player_stats.buff_attack(1)
 		Tile.Types.BUFF_STAMINA:
-			print("+ stamina")
-			player_stats.stamina += 1
+			player_stats.buff_stamina(1)
 		Tile.Types.HEAL:
-			print("heal")
 			player_stats.heal(1.0) # TODO: Actual amount
 		Tile.Types.SCOUT:
-			print("scout")
 			grid.radius_scouted.emit(coordinates, 3)
-			pass # TODO: Reveal nearby tile types
 		Tile.Types.BATTLE:
-			print("battle")
+			player_stats.take_damage(1)
 			pass # TODO: Open skillcheck UI
 	
 	grid.tile_entered.emit(coordinates)

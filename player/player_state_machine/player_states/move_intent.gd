@@ -1,8 +1,15 @@
+class_name PlayerStateMoveIntent
 extends PlayerState
 
 
 # PlayerState: MoveIntent
 # Choose a new direction and lock it in, then transition into Move state
+
+const VALID_DIRECTIONS: = [
+	Vector3.FORWARD,
+	Vector3.BACK,
+	Vector3.LEFT,
+	Vector3.RIGHT]
 
 
 var direction_intent:Vector3
@@ -24,7 +31,7 @@ func exit() -> void:
 
 
 func _on_direction_changed(direction:Vector3) -> void:
-	if not direction.is_zero_approx():
+	if not direction.is_zero_approx() and VALID_DIRECTIONS.has(direction):
 		direction_intent = direction
 		player.direction_intent_changed.emit(direction_intent)
 

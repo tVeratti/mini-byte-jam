@@ -9,7 +9,7 @@ var next_tile_coord:Vector3
 
 
 @onready var player:Player = owner
-@onready var grid:TileGrid = get_tree().get_first_node_in_group("tile_grid")
+@onready var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 
 
 func _ready() -> void:

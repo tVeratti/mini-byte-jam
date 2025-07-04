@@ -1,11 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=5 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
+[ext_resource type="PackedScene" uid="uid://b0dwk7j8uulrj" path="res://map/player_stats_hud.tscn" id="2_lgq1i"]
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="3_iw27f"]
 [ext_resource type="PackedScene" uid="uid://bltwcei6bd7hh" path="res://player/player.tscn" id="4_71pa8"]
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_p5pve")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="PlayerStatsHud" parent="HUD/MarginContainer/Layout" node_paths=PackedStringArray("player") instance=ExtResource("2_lgq1i")]
+layout_mode = 2
+player = NodePath("../../../../Player")
 
 [node name="Grid" parent="." instance=ExtResource("3_iw27f")]
 unique_name_in_owner = true

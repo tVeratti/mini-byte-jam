@@ -2,7 +2,7 @@ class_name Map
 extends Node
 
 
-@onready var grid:TileGrid = %Grid
+@onready var grid:Grid = %Grid
 @onready var player:Player = %Player
 
 

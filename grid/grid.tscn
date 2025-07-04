@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://blho1i521pjl4"]
 
-[ext_resource type="MeshLibrary" uid="uid://ccoytqdw534hl" path="res://grid/grid_mesh_library.tres" id="1_y3jnv"]
-[ext_resource type="Script" uid="uid://7tcvy5vxmsor" path="res://grid/grid.gd" id="2_p060q"]
-[ext_resource type="Script" uid="uid://dpw6tkwdl1sx5" path="res://grid/grid_generator.gd" id="3_jqrfh"]
+[ext_resource type="MeshLibrary" uid="uid://ccoytqdw534hl" path="res://grid/grid_mesh_library.tres" id="1_isuoj"]
+[ext_resource type="Script" uid="uid://7tcvy5vxmsor" path="res://grid/grid.gd" id="2_i5tsu"]
+[ext_resource type="Script" uid="uid://dpw6tkwdl1sx5" path="res://grid/grid_generator.gd" id="3_30hoj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ebq2e"]
 seed = 506
@@ -12,12 +12,16 @@ fractal_octaves = 1
 domain_warp_type = 1
 
 [node name="Grid" type="GridMap" groups=["tile_grid"]]
-mesh_library = ExtResource("1_y3jnv")
+mesh_library = ExtResource("1_isuoj")
 cell_size = Vector3(1.05, 1, 1.05)
-script = ExtResource("2_p060q")
+data = {
+"cells": PackedInt32Array(0, 1, 4)
+}
+script = ExtResource("2_i5tsu")
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="GridGenerator" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_jqrfh")
+script = ExtResource("3_30hoj")
 noise_texture = SubResource("FastNoiseLite_ebq2e")
 metadata/_custom_type_script = "uid://dpw6tkwdl1sx5"

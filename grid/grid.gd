@@ -1,6 +1,7 @@
 @tool
-class_name TileGrid
+class_name Grid
 extends GridMap
+
 
 signal tile_entered(coordinates:Vector3)
 signal radius_scouted(center:Vector3, radius:int)
