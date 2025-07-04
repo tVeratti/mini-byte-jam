@@ -6,10 +6,14 @@ signal ended(result)
 
 
 const LEVEL_WEIGHT:float = 10.0
+
 const TRACK_WIDTH:int = 300
+
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
-const MOVE_SPEED:float = 100.0
+
+const MOVE_SPEED_MIN:float = 100.0
+const MOVE_SPEED_MAX:float = 500.0
 
 
 enum Results { SUCCESS, RETRY, FAIL }
@@ -40,7 +44,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if has_started:
-		var move_speed:float = MOVE_SPEED * max(1, battle_level / 10.0)
+		var move_speed_weight = clamp(battle_level / float(PlayerStats.MAX_LEVEL), 0.0, 1.0)
+		var move_speed:float = lerp(MOVE_SPEED_MIN, MOVE_SPEED_MAX, move_speed_weight)
+		
 		var current_margin: = input_container.get_theme_constant("margin_left")
 		var next_margin:int = ceil(float(current_margin) + (move_speed * delta))
 		input_container.add_theme_constant_override("margin_left", next_margin)
@@ -108,4 +114,6 @@ func _end_battle() -> void:
 		# FAIL
 		ended.emit(Results.FAIL)
 	
+	# Leave it up for a second so the player can see where it stopped
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
