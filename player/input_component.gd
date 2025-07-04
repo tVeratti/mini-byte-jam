@@ -3,7 +3,8 @@ extends Node
 
 
 signal direction_changed(dir:Vector3)
-signal accepted
+signal accept_pressed
+signal accept_released
 
 
 var direction:Vector3
@@ -15,8 +16,11 @@ func _process(_delta):
 		direction = next_direction
 		direction_changed.emit(direction)
 	
+	if Input.is_action_just_pressed("accept"):
+		accept_pressed.emit()
+	
 	if Input.is_action_just_released("accept"):
-		accepted.emit()
+		accept_released.emit()
 
 
 func _get_direction() -> Vector3:

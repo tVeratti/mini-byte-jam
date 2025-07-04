@@ -8,7 +8,7 @@ var queued_next_intent:Vector3
 
 
 func enter(_previous_state_path: String, data := {}) -> void:
-	# Listen to direction changes to queue up the next direction
+	# Listen to direction changes to queue up the next move intent
 	queued_next_intent = Vector3.ZERO
 	player.input_component.direction_changed.connect(_on_direction_changed)
 	

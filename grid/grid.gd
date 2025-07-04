@@ -7,7 +7,7 @@ signal tile_entered(coordinates:Vector3)
 signal radius_scouted(center:Vector3, radius:int)
 
 signal battle_started(level:int)
-signal battle_ended
+signal battle_ended(result:Battle.Results)
 
 
 const TILE_IDS:Dictionary[int, Tile.Types] = {

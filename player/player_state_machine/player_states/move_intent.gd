@@ -21,13 +21,13 @@ func enter(_previous_state_path: String, data := {}) -> void:
 	player.player_direction_intent.show()
 	
 	player.input_component.direction_changed.connect(_on_direction_changed)
-	player.input_component.accepted.connect(_on_accepted)
+	player.input_component.accept_released.connect(_on_accepted)
 
 
 func exit() -> void:
 	player.player_direction_intent.hide()
 	player.input_component.direction_changed.disconnect(_on_direction_changed)
-	player.input_component.accepted.disconnect(_on_accepted)
+	player.input_component.accept_released.disconnect(_on_accepted)
 
 
 func _on_direction_changed(direction:Vector3) -> void:

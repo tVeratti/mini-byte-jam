@@ -2,29 +2,49 @@ class_name Battle
 extends MarginContainer
 
 
+signal ended(result)
+
+
 const LEVEL_WEIGHT:float = 10.0
 const TRACK_WIDTH:int = 300
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
+const MOVE_SPEED:float = 100.0
+
+
+enum Results { SUCCESS, RETRY, FAIL }
 
 
 @onready var track:ColorRect = %Track
 @onready var stamina:ColorRect = %Stamina
 @onready var attack:ColorRect = %Attack
 @onready var input_container:MarginContainer = %InputContainer
+@onready var input:ColorRect = %Input
 
 
 var level:int = 1
 var player_stats:PlayerStats
+
+var has_started:bool = false
 
 
 func _ready() -> void:
 	var player:Player = get_tree().get_first_node_in_group("player")
 	player_stats = player.player_stats
 	
-	player.input_component.accepted.connect(_on_input_accept)
+	player.input_component.accept_pressed.connect(_on_input_accept)
 	
 	_set_target_sizes()
+
+
+func _process(delta: float) -> void:
+	if has_started:
+		var current_margin: = input_container.get_theme_constant("margin_left")
+		var next_margin:int = ceil(float(current_margin) + (MOVE_SPEED * delta))
+		input_container.add_theme_constant_override("margin_left", next_margin)
+		
+		if current_margin >= TRACK_WIDTH:
+			_end_battle()
 
 
 func _set_target_sizes() -> void:
@@ -52,8 +72,36 @@ func _set_target_sizes() -> void:
 	track.add_theme_constant_override("margin_left", random_offset)
 
 
+func _reset() -> void:
+	has_started = false
+	input_container.add_theme_constant_override("margin_left", 0)
+
+
 func _on_input_accept() -> void:
+	if not has_started:
+		has_started = true
+	else:
+		_end_battle()
+
+
+func _end_battle() -> void:
+	has_started = false
+	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
-	grid.battle_ended.emit()
+	
+	var input_position:int = input.position.x
+	if input_position > attack.position.x and input_position < attack.position.x + attack.custom_minimum_size.x:
+		# Within ATTACK range
+		ended.emit(Results.SUCCESS)
+	
+	elif input_position > stamina.position.x and input_position < stamina.position.x + stamina.custom_minimum_size.x:
+		# Within STAMINA range
+		# Do not free or emit ended, reset
+		_reset()
+		return
+	
+	else:
+		# FAIL
+		ended.emit(Results.FAIL)
 	
 	queue_free()

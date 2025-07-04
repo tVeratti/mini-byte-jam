@@ -13,5 +13,11 @@ func exit() -> void:
 	grid.battle_ended.disconnect(_on_battle_ended)
 
 
-func _on_battle_ended() -> void:
+func _on_battle_ended(result:Battle.Results) -> void:
+	match(result):
+		Battle.Results.SUCCESS:
+			print("battle success")
+		Battle.Results.FAIL:
+			player.player_stats.take_damage(1)
+	
 	finished.emit(IDLE)

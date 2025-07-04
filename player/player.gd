@@ -44,7 +44,6 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.SCOUT:
 			grid.radius_scouted.emit(coordinates, 3)
 		Tile.Types.BATTLE:
-			player_stats.take_damage(1)
-			pass # TODO: Open skillcheck UI
+			pass
 	
 	grid.tile_entered.emit(coordinates)
