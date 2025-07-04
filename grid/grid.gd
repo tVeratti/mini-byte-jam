@@ -42,24 +42,23 @@ func generate_tiles() -> void:
 
 
 func _show_tiles(center:Vector3, radius:int) -> void:
-	var directions = [
-		Vector3.FORWARD,
-		Vector3.BACK,
-		Vector3.RIGHT,
-		Vector3.LEFT,
-		# Diagonal Directions
-		Vector3.FORWARD + Vector3.LEFT,
-		Vector3.FORWARD + Vector3.RIGHT,
-		Vector3.BACK + Vector3.LEFT,
-		Vector3.BACK + Vector3.RIGHT ]
+	# Add minimum range to compensate for current tile/half range
+	radius += 2
 	
-	for r in range(radius):
-		for direction in directions:
-			var coordinates:Vector3 = center + (direction * (r + 1))
-			var tile_type:Tile.Types = tiles[coordinates]
-			var tile_id:int = TILE_IDS[tile_type]
+	for i in range(radius):
+		var x: = i - int(radius / 2.0)
+		
+		for j in range(radius):
+			var y: = j - int(radius / 2.0)
 			
-			set_cell_item(coordinates, tile_id)
+			var distance: = absi(x) + absi(y)
+			if distance <= radius:
+				var direction: = Vector3(x, 0, y)
+				var coordinates:Vector3 = center + direction
+				var tile_type:Tile.Types = tiles[coordinates]
+				var tile_id:int = TILE_IDS[tile_type]
+				
+				set_cell_item(coordinates, tile_id)
 
 
 func _on_tile_entered(coordinates:Vector3) -> void:
