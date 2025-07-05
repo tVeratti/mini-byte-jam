@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc02vevc3mc8q"]
+[gd_scene load_steps=5 format=3 uid="uid://cc02vevc3mc8q"]
 
 [ext_resource type="Script" uid="uid://dsbf2who6sb23" path="res://menu/menu.gd" id="1_j0t7f"]
+[ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="2_g18jx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nwqt"]
+font = ExtResource("2_g18jx")
+font_size = 80
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g18jx"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Menu" type="MarginContainer"]
 anchors_preset = 15
@@ -19,11 +42,13 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Menu"
+text = "Which Way Captain?"
+label_settings = SubResource("LabelSettings_6nwqt")
 horizontal_alignment = 1
 
 [node name="NewGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "New Game"
+theme_override_styles/normal = SubResource("StyleBoxFlat_g18jx")
+text = "Weigh Anchor!"
 
 [connection signal="pressed" from="VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
