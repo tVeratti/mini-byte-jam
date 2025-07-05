@@ -5,7 +5,7 @@ extends Control
 
 
 @onready var health:Label = %Health
-@onready var stamina:Label = %Stamina
+@onready var morale:Label = %Morale
 @onready var attack:Label = %Attack
 @onready var level: Label = %Level
 
@@ -20,7 +20,7 @@ func render() -> void:
 	var stats: = player.player_stats
 	
 	health.text = "Health %s/%s" % [stats.health_current, stats.health_max]
-	stamina.text = "Stamina %s" % stats.stamina
+	morale.text = "Morale %s" % stats.morale
 	attack.text = "Attack %s" % stats.attack
 	level.text = "Level %03d" % stats.level
 

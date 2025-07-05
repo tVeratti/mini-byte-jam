@@ -8,11 +8,12 @@ signal ended(result)
 const LEVEL_WEIGHT:float = 10.0
 
 const TRACK_WIDTH:int = 600
+const NEEDLE_WIDTH:int = 5
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
 
 const MOVE_SPEED_MIN:float = 100.0
-const MOVE_SPEED_MAX:float = 500.0
+const MOVE_SPEED_MAX:float = 700.0
 
 
 enum Results { SUCCESS, RETRY, FAIL }
@@ -23,16 +24,18 @@ enum Results { SUCCESS, RETRY, FAIL }
 
 @onready var level:Label = %Level
 @onready var track:Panel = %Track
-@onready var stamina:ColorRect = %Stamina
+@onready var morale:ColorRect = %Morale
 @onready var attack:ColorRect = %Attack
 @onready var input_container:MarginContainer = %InputContainer
 @onready var input:ColorRect = %Input
+@onready var result_root:Control = %ResultRoot
 
 
 var battle_level:int = 1
 var player_stats:PlayerStats
 
 var has_started:bool = false
+var freeze_input:bool = false
 
 
 func _ready() -> void:
@@ -62,24 +65,24 @@ func _set_target_sizes() -> void:
 	level.text = "Level %3d" % int(battle_level)
 	
 	var attack_percentage:float = float(player_stats.attack) / weighted_level
-	var stamina_percentage:float = float(player_stats.stamina) / weighted_level
+	var morale_percentage:float = float(player_stats.morale) / weighted_level
 	
 	var attack_width:int = clamp(
 		MIN_TARGET_WIDTH,
 		TRACK_WIDTH - MIN_TARGET_OFFSET,
 		TRACK_WIDTH * attack_percentage)
 	
-	var stamina_width:int = clamp(
+	var morale_width:int = clamp(
 		MIN_TARGET_WIDTH,
 		TRACK_WIDTH - MIN_TARGET_OFFSET,
-		(TRACK_WIDTH * stamina_percentage) + attack_width)
+		(TRACK_WIDTH * morale_percentage) + attack_width)
 	
 	attack.custom_minimum_size.x = attack_width
-	stamina.custom_minimum_size.x = stamina_width
+	morale.custom_minimum_size.x = morale_width
 	
 	var random_offset:int = randi_range(
 		MIN_TARGET_OFFSET,
-		TRACK_WIDTH - max(attack_width, stamina_width))
+		TRACK_WIDTH - max(attack_width, morale_width))
 	
 	track.add_theme_constant_override("margin_left", random_offset)
 
@@ -90,6 +93,8 @@ func _reset() -> void:
 
 
 func _on_input_accept() -> void:
+	if freeze_input: return
+	
 	if not has_started:
 		has_started = true
 	else:
@@ -98,35 +103,39 @@ func _on_input_accept() -> void:
 
 func _end_battle() -> void:
 	has_started = false
+	freeze_input = true
 	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 	
 	var result:Results
 	
 	var input_position:int = input.position.x
-	if input_position > attack.position.x and input_position < attack.position.x + attack.custom_minimum_size.x:
+	if input_position + NEEDLE_WIDTH > attack.position.x and input_position - NEEDLE_WIDTH < attack.position.x + attack.custom_minimum_size.x:
 		# Within ATTACK range
 		result = Results.SUCCESS
 	
-	elif input_position > stamina.position.x and input_position < stamina.position.x + stamina.custom_minimum_size.x:
-		# Within STAMINA range
-		# Do not free or emit ended, reset
-		_reset()
+	elif input_position + NEEDLE_WIDTH > morale.position.x and input_position - NEEDLE_WIDTH < morale.position.x + morale.custom_minimum_size.x:
+		# Within MORALE range
 		result = Results.RETRY
 	
 	else:
 		# FAIL
 		result = Results.FAIL
 	
-	ended.emit(result)
-	
 	var result_node = result_scene.instantiate()
-	add_child(result_node)
+	result_root.add_child(result_node)
 	result_node.render(result)
 	
-	if [Results.SUCCESS, Results.FAIL].has(result):
+	# Leave it up for a second so the player can see where it stopped
+	await get_tree().create_timer(1.0).timeout
+	ended.emit(result)
+	
+	freeze_input = true
+	
+	if result == Results.RETRY:
+		_reset()
+	
+	elif [Results.SUCCESS, Results.FAIL].has(result):
 		var player:Player = get_tree().get_first_node_in_group("player")
 		player.input_component.accept_pressed.disconnect(_on_input_accept)
-		# Leave it up for a second so the player can see where it stopped
-		await get_tree().create_timer(1.0).timeout
 		queue_free()

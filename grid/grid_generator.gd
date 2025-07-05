@@ -14,7 +14,7 @@ const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
 const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
 	TileGroups.BUFF: [
 		Tile.Types.BUFF_ATTACK,
-		Tile.Types.BUFF_STAMINA],
+		Tile.Types.BUFF_MORALE],
 	TileGroups.DANGER: [Tile.Types.BATTLE],
 	TileGroups.UTILITY: [Tile.Types.HEAL, Tile.Types.SCOUT]
 }

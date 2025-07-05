@@ -14,7 +14,7 @@ domain_warp_type = 1
 
 [node name="Grid" type="GridMap" groups=["tile_grid"]]
 mesh_library = ExtResource("1_isuoj")
-cell_size = Vector3(1.05, 1, 1.05)
+cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(0, 1, 4, 1, 1, 6)
 }

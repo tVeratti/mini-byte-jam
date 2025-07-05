@@ -25,7 +25,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Health 5/5"
 
-[node name="Stamina" type="Label" parent="VBoxContainer"]
+[node name="Morale" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Stamina 1"
@@ -33,4 +33,4 @@ text = "Stamina 1"
 [node name="Attack" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Stamina 1"
+text = "Attack 1"

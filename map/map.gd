@@ -18,7 +18,7 @@ func _ready() -> void:
 	var center_i: = int(grid.grid_generator.grid_size / 2.0)
 	var center_coord: = Vector3(center_i, 0, center_i)
 	var local_pos: = grid.map_to_local(center_coord)
-	player.global_position = grid.to_global(local_pos)
+	player.global_position = grid.to_global(local_pos) + Vector3(0, 1, 0)
 	grid.tile_entered.emit(center_coord)
 	
 	grid.battle_started.connect(_on_battle_started)

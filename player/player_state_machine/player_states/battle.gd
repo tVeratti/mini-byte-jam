@@ -17,7 +17,7 @@ func _on_battle_ended(result:Battle.Results) -> void:
 	match(result):
 		Battle.Results.SUCCESS:
 			player.player_stats.buff_attack(1)
-			player.player_stats.buff_stamina(1)
+			player.player_stats.buff_morale(1)
 		Battle.Results.FAIL:
 			player.player_stats.take_damage(1)
 	

@@ -22,14 +22,14 @@ extends Node3D
 # Skill challenge that is easier/harder based on stat diff
 # Bar with small target area, need to hit input when dot is within target area
 # Target area is bigger if your attack is higher
-# Secondary target area around that which is bigger if your stamina is high
+# Secondary target area around that which is bigger if your morale is high
 # If you hit the secondary target area, you try again
 # If you have higher stats than the skill challenge, it should be pretty easy
 # If you fail, you take damage (equal to the diff??)
 
 # Stats:
 # - Attack
-# - Stamina
+# - Morale
 # - Health
 
 

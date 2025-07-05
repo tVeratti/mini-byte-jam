@@ -2,4 +2,4 @@ class_name Tile
 extends Node3D
 
 
-enum Types { VISITED, BUFF_ATTACK, BUFF_STAMINA, HEAL, BATTLE, SCOUT, GOAL }
+enum Types { VISITED, BUFF_ATTACK, BUFF_MORALE, HEAL, BATTLE, SCOUT, GOAL }

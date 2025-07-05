@@ -12,6 +12,7 @@ signal coordinates_changed(coordinates:Vector3)
 @onready var player_direction_intent:PlayerDirectionIntent = %PlayerDirectionIntent
 @onready var state_label:Label3D = %StateLabel
 @onready var camera_3d:Camera3D = $Camera3D
+@onready var player_notifications:PlayerNotifications = %PlayerNotifications
 
 
 func _ready() -> void:
@@ -34,8 +35,8 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 			pass
 		Tile.Types.BUFF_ATTACK:
 			player_stats.buff_attack(1)
-		Tile.Types.BUFF_STAMINA:
-			player_stats.buff_stamina(1)
+		Tile.Types.BUFF_MORALE:
+			player_stats.buff_morale(1)
 		Tile.Types.HEAL:
 			player_stats.heal(1.0) # TODO: Actual amount
 		Tile.Types.SCOUT:
