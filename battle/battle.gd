@@ -7,8 +7,7 @@ signal ended(result)
 
 const LEVEL_WEIGHT:float = 10.0
 
-const TRACK_WIDTH:int = 300
-
+const TRACK_WIDTH:int = 500
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
 
@@ -19,7 +18,10 @@ const MOVE_SPEED_MAX:float = 500.0
 enum Results { SUCCESS, RETRY, FAIL }
 
 
-@onready var level: Label = %Level
+@export var result_scene:PackedScene
+
+
+@onready var level:Label = %Level
 @onready var track:Panel = %Track
 @onready var stamina:ColorRect = %Stamina
 @onready var attack:ColorRect = %Attack
@@ -99,21 +101,32 @@ func _end_battle() -> void:
 	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 	
+	var result:Results
+	
 	var input_position:int = input.position.x
 	if input_position > attack.position.x and input_position < attack.position.x + attack.custom_minimum_size.x:
 		# Within ATTACK range
-		ended.emit(Results.SUCCESS)
+		result = Results.SUCCESS
 	
 	elif input_position > stamina.position.x and input_position < stamina.position.x + stamina.custom_minimum_size.x:
 		# Within STAMINA range
 		# Do not free or emit ended, reset
 		_reset()
-		return
+		result = Results.RETRY
 	
 	else:
 		# FAIL
-		ended.emit(Results.FAIL)
+		result = Results.FAIL
 	
-	# Leave it up for a second so the player can see where it stopped
-	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	ended.emit(result)
+	
+	var result_node = result_scene.instantiate()
+	add_child(result_node)
+	result_node.render(result)
+	
+	if [Results.SUCCESS, Results.FAIL].has(result):
+		var player:Player = get_tree().get_first_node_in_group("player")
+		player.input_component.accept_pressed.disconnect(_on_input_accept)
+		# Leave it up for a second so the player can see where it stopped
+		await get_tree().create_timer(1.0).timeout
+		queue_free()

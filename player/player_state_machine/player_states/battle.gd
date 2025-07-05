@@ -4,7 +4,7 @@ extends PlayerState
 var grid:Grid
 
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	grid = get_tree().get_first_node_in_group("tile_grid")
 	grid.battle_ended.connect(_on_battle_ended)
 

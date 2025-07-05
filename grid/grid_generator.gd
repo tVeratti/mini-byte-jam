@@ -5,6 +5,7 @@ extends Node
 
 enum TileGroups { BUFF, UTILITY, DANGER }
 
+const GOAL_MARGIN:float = 2
 const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
 	0.70: TileGroups.BUFF,
 	0.92: TileGroups.DANGER,
@@ -40,6 +41,18 @@ func generate_tiles() -> Dictionary[Vector3, Tile.Types]:
 			tiles[coords] = effect
 	
 	return tiles
+
+
+func generate_goal_coordinates(center:Vector3) -> Vector3:
+	var goal_direction:Vector3 = [
+		Vector3.FORWARD,
+		Vector3.BACK,
+		Vector3.RIGHT,
+		Vector3.LEFT
+	].pick_random()
+	
+	var goal_coordinates:Vector3 = center + (((grid_size / 2.0) - GOAL_MARGIN) * goal_direction)
+	return goal_coordinates
 
 
 func _get_type_from_noise(noise_value:float, sorted_thresholds:Array) -> Tile.Types:

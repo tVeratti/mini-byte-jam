@@ -39,8 +39,10 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.HEAL:
 			player_stats.heal(1.0) # TODO: Actual amount
 		Tile.Types.SCOUT:
-			grid.radius_scouted.emit(coordinates, 3)
+			grid.radius_scouted.emit(coordinates, 5, true)
 		Tile.Types.BATTLE:
+			pass
+		Tile.Types.GOAL:
 			pass
 	
 	grid.tile_entered.emit(coordinates)
