@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhgn5s74308uh"]
+
+[ext_resource type="Script" uid="uid://iibknr0e5r1l" path="res://map/goal_window.gd" id="1_x556s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ylcc"]
+font_size = 64
+
+[node name="GoalWindow" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x556s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Treasure Found!"
+label_settings = SubResource("LabelSettings_6ylcc")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Next Treasure Map"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

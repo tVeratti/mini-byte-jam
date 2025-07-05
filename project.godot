@@ -15,6 +15,10 @@ run/main_scene="uid://1430bwsidw41"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneLoader="*res://autoload/scene_loader.gd"
+
 [global_group]
 
 tile_grid=""

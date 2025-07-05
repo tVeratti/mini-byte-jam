@@ -31,3 +31,7 @@ extends Node3D
 # - Attack
 # - Stamina
 # - Health
+
+
+func _ready() -> void:
+	SceneLoader.main_root = self

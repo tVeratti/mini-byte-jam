@@ -3,6 +3,7 @@ extends Node
 
 
 @export var battle_scene:PackedScene
+@export var goal_window_scene:PackedScene
 
 
 @onready var interface:CanvasLayer = %Interface
@@ -21,6 +22,7 @@ func _ready() -> void:
 	grid.tile_entered.emit(center_coord)
 	
 	grid.battle_started.connect(_on_battle_started)
+	grid.goal_entered.connect(_on_goal_entered)
 
 
 func _on_battle_started(level:int) -> void:
@@ -32,3 +34,8 @@ func _on_battle_started(level:int) -> void:
 
 func _on_battle_ended(result:Battle.Results) -> void:
 	grid.battle_ended.emit(result)
+
+
+func _on_goal_entered() -> void:
+	var goal_window = goal_window_scene.instantiate()
+	interface.add_child(goal_window)

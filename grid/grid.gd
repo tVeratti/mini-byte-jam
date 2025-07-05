@@ -9,6 +9,9 @@ signal radius_scouted(center:Vector3, radius:int, show_goal_direction:bool)
 signal battle_started(level:int)
 signal battle_ended(result:Battle.Results)
 
+signal goal_entered
+
+
 const SCOUT_ID:int = 5
 const GOAL_ID:int = 6
 const TILE_IDS:Dictionary[int, Tile.Types] = {
@@ -81,6 +84,8 @@ func _on_tile_entered(coordinates:Vector3) -> void:
 	match(tile_type):
 		Tile.Types.BATTLE:
 			battle_started.emit(1)
+		Tile.Types.GOAL:
+			goal_entered.emit()
 	
 	radius_scouted.emit(coordinates, 1, false)
 	
