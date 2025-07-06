@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=10 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
 [ext_resource type="PackedScene" uid="uid://bcvlm28nt0iwi" path="res://battle/battle.tscn" id="2_kffv2"]
 [ext_resource type="PackedScene" uid="uid://b0dwk7j8uulrj" path="res://map/player_stats_hud/player_stats_hud.tscn" id="2_lgq1i"]
 [ext_resource type="PackedScene" uid="uid://dhgn5s74308uh" path="res://map/goal_window/goal_window.tscn" id="3_7lyie"]
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="3_iw27f"]
+[ext_resource type="Shader" uid="uid://cviwov15lli60" path="res://map/tilt_shift.gdshader" id="4_7lyie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jdw0"]
+shader = ExtResource("4_7lyie")
+shader_parameter/limit = 0.5
+shader_parameter/blur = 1.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_kffv2"]
 size = Vector2(100, 100)
@@ -19,6 +25,14 @@ goal_window_scene = ExtResource("3_7lyie")
 
 [node name="Interface" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+
+[node name="TiltShiftBlur" type="ColorRect" parent="Interface"]
+material = SubResource("ShaderMaterial_5jdw0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HUD" type="MarginContainer" parent="Interface"]
 anchors_preset = 15
