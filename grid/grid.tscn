@@ -16,7 +16,7 @@ domain_warp_type = 1
 mesh_library = ExtResource("1_isuoj")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(0, 1, 4, 1, 1, 6)
+"cells": PackedInt32Array(0, 1, 4, 1, 1, 6, 2, 1, 7)
 }
 script = ExtResource("2_i5tsu")
 scout_decal_texture = ExtResource("3_p060q")

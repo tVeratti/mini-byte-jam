@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhgn5s74308uh"]
 
-[ext_resource type="Script" uid="uid://iibknr0e5r1l" path="res://map/goal_window.gd" id="1_x556s"]
+[ext_resource type="Script" uid="uid://iibknr0e5r1l" path="res://map/goal_window/goal_window.gd" id="1_wvvkr"]
 [ext_resource type="LabelSettings" uid="uid://cxqofppwjhrtu" path="res://assets/header_font_settings.tres" id="2_qlno6"]
 
 [node name="GoalWindow" type="MarginContainer"]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x556s")
+script = ExtResource("1_wvvkr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)

@@ -1,8 +1,7 @@
 extends Control
 
 
-@export var player:Player
-
+@onready var player:Player = get_tree().get_first_node_in_group("player")
 
 @onready var health:Label = %Health
 @onready var morale:Label = %Morale
@@ -11,8 +10,6 @@ extends Control
 
 
 func _ready() -> void:
-	await owner.ready
-	
 	player.player_stats.stats_changed.connect(_on_stats_changed)
 
 

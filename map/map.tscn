@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=6 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
 [ext_resource type="PackedScene" uid="uid://bcvlm28nt0iwi" path="res://battle/battle.tscn" id="2_kffv2"]
-[ext_resource type="PackedScene" uid="uid://b0dwk7j8uulrj" path="res://map/player_stats_hud.tscn" id="2_lgq1i"]
-[ext_resource type="PackedScene" uid="uid://dhgn5s74308uh" path="res://map/goal_window.tscn" id="3_7lyie"]
+[ext_resource type="PackedScene" uid="uid://b0dwk7j8uulrj" path="res://map/player_stats_hud/player_stats_hud.tscn" id="2_lgq1i"]
+[ext_resource type="PackedScene" uid="uid://dhgn5s74308uh" path="res://map/goal_window/goal_window.tscn" id="3_7lyie"]
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="3_iw27f"]
-[ext_resource type="PackedScene" uid="uid://bltwcei6bd7hh" path="res://player/player.tscn" id="4_71pa8"]
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_p5pve")
@@ -32,16 +31,11 @@ layout_mode = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="PlayerStatsHud" parent="Interface/HUD/Layout" node_paths=PackedStringArray("player") instance=ExtResource("2_lgq1i")]
+[node name="PlayerStatsHud" parent="Interface/HUD/Layout" instance=ExtResource("2_lgq1i")]
 layout_mode = 2
-player = NodePath("../../../../Player")
 
 [node name="Grid" parent="." instance=ExtResource("3_iw27f")]
 unique_name_in_owner = true
-
-[node name="Player" parent="." instance=ExtResource("4_71pa8")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65163, 5.56404, 47.048)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.781074, 0.624439, 0, -0.624439, -0.781074, 0, 18.698, 0)

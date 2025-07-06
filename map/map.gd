@@ -6,9 +6,12 @@ extends Node
 @export var goal_window_scene:PackedScene
 
 
+var load_player_stats:PlayerStats
+
+
 @onready var interface:CanvasLayer = %Interface
 @onready var grid:Grid = %Grid
-@onready var player:Player = %Player
+@onready var player:Player = get_tree().get_first_node_in_group("player")
 
 
 func _ready() -> void:
@@ -20,6 +23,7 @@ func _ready() -> void:
 	var local_pos: = grid.map_to_local(center_coord)
 	player.global_position = grid.to_global(local_pos) + Vector3(0, 1, 0)
 	grid.tile_entered.emit(center_coord)
+	player.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	grid.battle_started.connect(_on_battle_started)
 	grid.goal_entered.connect(_on_goal_entered)

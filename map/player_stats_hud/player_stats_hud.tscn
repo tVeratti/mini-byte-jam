@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0dwk7j8uulrj"]
 
-[ext_resource type="Script" uid="uid://bxvoa6jfwni54" path="res://map/player_stats_hud.gd" id="1_p5avf"]
+[ext_resource type="Script" uid="uid://bxvoa6jfwni54" path="res://map/player_stats_hud/player_stats_hud.gd" id="1_p5avf"]
 
 [node name="PlayerStatsHud" type="MarginContainer"]
 anchors_preset = 15

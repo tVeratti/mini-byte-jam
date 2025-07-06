@@ -130,9 +130,8 @@ func _end_battle() -> void:
 	await get_tree().create_timer(1.0).timeout
 	ended.emit(result)
 	
-	freeze_input = true
-	
 	if result == Results.RETRY:
+		freeze_input = false
 		_reset()
 	
 	elif [Results.SUCCESS, Results.FAIL].has(result):

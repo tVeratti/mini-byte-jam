@@ -38,7 +38,7 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.BUFF_MORALE:
 			player_stats.buff_morale(1)
 		Tile.Types.HEAL:
-			player_stats.heal(1.0) # TODO: Actual amount
+			player_stats.heal(1) # TODO: Actual amount
 		Tile.Types.SCOUT:
 			grid.radius_scouted.emit(coordinates, 5, true)
 		Tile.Types.BATTLE:

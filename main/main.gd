@@ -33,5 +33,10 @@ extends Node3D
 # - Health
 
 
+@onready var player:Player = %Player
+@onready var scene_root:Node3D = %SceneRoot
+
+
 func _ready() -> void:
-	SceneLoader.main_root = self
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	SceneLoader.main_root = scene_root

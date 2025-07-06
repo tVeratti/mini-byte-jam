@@ -3,15 +3,17 @@ class_name GridGenerator
 extends Node
 
 
-enum TileGroups { BUFF, UTILITY, DANGER }
+enum TileGroups { BUFF, UTILITY, DANGER, BLOCK }
 
 const GOAL_MARGIN:float = 2
 const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
+	0.50: TileGroups.BLOCK,
 	0.70: TileGroups.BUFF,
 	0.92: TileGroups.DANGER,
 	1.00: TileGroups.UTILITY
 }
 const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
+	TileGroups.BLOCK: [Tile.Types.IMPASSABLE],
 	TileGroups.BUFF: [
 		Tile.Types.BUFF_ATTACK,
 		Tile.Types.BUFF_MORALE],

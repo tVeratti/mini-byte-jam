@@ -7,7 +7,7 @@ signal health_zero
 
 
 const DEFAULT_HEALTH_MAX:int = 5
-const MAX_LEVEL:int = 100
+const MAX_LEVEL:int = 500
 
 
 var level:int = 1
@@ -27,7 +27,7 @@ func _ready() -> void:
 	notifications = owner.player_notifications
 
 
-func take_damage(amount:float) -> void:
+func take_damage(amount:int) -> void:
 	health_current -= amount
 	stats_changed.emit()
 	notifications.render("-%s Health" % amount)

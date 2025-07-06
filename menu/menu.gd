@@ -1,4 +1,4 @@
-extends MarginContainer
+extends CanvasLayer
 
 
 func _on_new_game_pressed() -> void:
