@@ -18,7 +18,6 @@ var direction_intent:Vector3
 func enter(_previous_state_path: String, data := {}) -> void:
 	direction_intent = data.initial_direction
 	player.direction_intent_changed.emit(direction_intent)
-	player.player_direction_intent.show()
 	
 	player.input_component.direction_changed.connect(_on_direction_changed)
 	player.input_component.accept_released.connect(_on_accepted)

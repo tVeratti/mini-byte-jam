@@ -24,3 +24,6 @@ func _on_player_direction_changed(direction:Vector3) -> void:
 	if grid.tiles.has(next_tile_coord):
 		next_tile_type = grid.tiles[next_tile_coord]
 		global_position = grid.map_to_local(next_tile_coord) + POSITION_OFFSET
+		
+		var tile_type:Tile.Types = grid.tiles[next_tile_coord]
+		visible = tile_type != Tile.Types.IMPASSABLE
