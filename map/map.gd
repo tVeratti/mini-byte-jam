@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func _on_battle_started(level:int) -> void:
 	var battle_node:Battle = battle_scene.instantiate()
-	battle_node.battle_level = player.player_stats.level
+	battle_node.battle_level = player.player_stats.fatigue
 	battle_node.ended.connect(_on_battle_ended)
 	interface.add_child(battle_node)
 

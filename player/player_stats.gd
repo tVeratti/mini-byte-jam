@@ -7,13 +7,12 @@ signal health_zero
 
 
 const DEFAULT_HEALTH_MAX:int = 5
-const MAX_LEVEL:int = 500
+const MAX_FATIGUE:int = 100
 
 
-var level:int = 1
-
-var attack:int = 1.0
-var morale:int = 1.0
+var fatigue:int = 1
+var attack:int = 1
+var morale:int = 1
 
 var health_max:int = DEFAULT_HEALTH_MAX
 var health_current:int = DEFAULT_HEALTH_MAX
@@ -54,6 +53,12 @@ func buff_morale(amount:int) -> void:
 	notifications.render("+%s Morale" % amount)
 
 
-func level_up() -> void:
-	level = min(level + 1, MAX_LEVEL)
+func increase_fatigue() -> void:
+	fatigue = min(fatigue + 1, MAX_FATIGUE)
 	stats_changed.emit()
+
+
+func reduce_fatigue(amount:int) -> void:
+	fatigue = max(fatigue - amount, 0)
+	stats_changed.emit()
+	notifications.render("-%s Fatigue" % amount)

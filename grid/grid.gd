@@ -22,7 +22,8 @@ const TILE_IDS:Dictionary[int, Tile.Types] = {
 	4: Tile.Types.BATTLE,
 	5: Tile.Types.SCOUT,
 	6: Tile.Types.GOAL,
-	7: Tile.Types.IMPASSABLE
+	7: Tile.Types.IMPASSABLE,
+	8: Tile.Types.FATIGUE_REDUCTION
 }
 
 

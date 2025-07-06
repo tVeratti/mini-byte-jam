@@ -16,7 +16,8 @@ const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
 	TileGroups.BLOCK: [Tile.Types.IMPASSABLE],
 	TileGroups.BUFF: [
 		Tile.Types.BUFF_ATTACK,
-		Tile.Types.BUFF_MORALE],
+		Tile.Types.BUFF_MORALE,
+		Tile.Types.FATIGUE_REDUCTION],
 	TileGroups.DANGER: [Tile.Types.BATTLE],
 	TileGroups.UTILITY: [Tile.Types.HEAL, Tile.Types.SCOUT]
 }

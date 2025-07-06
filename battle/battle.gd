@@ -49,7 +49,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if has_started:
-		var move_speed_weight = clamp(battle_level / float(PlayerStats.MAX_LEVEL), 0.0, 1.0)
+		var move_speed_weight = clamp(battle_level / float(PlayerStats.MAX_FATIGUE), 0.0, 1.0)
 		var move_speed:float = lerp(MOVE_SPEED_MIN, MOVE_SPEED_MAX, move_speed_weight)
 		
 		var current_margin: = input_container.get_theme_constant("margin_left")
@@ -62,20 +62,20 @@ func _process(delta: float) -> void:
 
 func _set_target_sizes() -> void:
 	var weighted_level:float = battle_level * LEVEL_WEIGHT
-	level.text = "Level %3d" % int(battle_level)
+	level.text = "Fatigue Level %s" % int(battle_level)
 	
 	var attack_percentage:float = float(player_stats.attack) / weighted_level
 	var morale_percentage:float = float(player_stats.morale) / weighted_level
 	
 	var attack_width:int = clamp(
+		TRACK_WIDTH * attack_percentage,
 		MIN_TARGET_WIDTH,
-		TRACK_WIDTH - MIN_TARGET_OFFSET,
-		TRACK_WIDTH * attack_percentage)
+		TRACK_WIDTH - MIN_TARGET_OFFSET)
 	
 	var morale_width:int = clamp(
+		(TRACK_WIDTH * morale_percentage) + attack_width,
 		MIN_TARGET_WIDTH,
-		TRACK_WIDTH - MIN_TARGET_OFFSET,
-		(TRACK_WIDTH * morale_percentage) + attack_width)
+		TRACK_WIDTH - MIN_TARGET_OFFSET)
 	
 	attack.custom_minimum_size.x = attack_width
 	morale.custom_minimum_size.x = morale_width

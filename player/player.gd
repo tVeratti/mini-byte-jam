@@ -25,7 +25,7 @@ func _process(_delta):
 
 
 func _on_coordinates_changed(coordinates:Vector3) -> void:
-	player_stats.level_up()
+	player_stats.increase_fatigue()
 	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
 	var tile_type: = grid.tiles[coordinates]
@@ -38,12 +38,14 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.BUFF_MORALE:
 			player_stats.buff_morale(1)
 		Tile.Types.HEAL:
-			player_stats.heal(1) # TODO: Actual amount
+			player_stats.heal(1)
 		Tile.Types.SCOUT:
 			grid.radius_scouted.emit(coordinates, 5, true)
 		Tile.Types.BATTLE:
 			pass
 		Tile.Types.GOAL:
 			pass
+		Tile.Types.FATIGUE_REDUCTION:
+			player_stats.reduce_fatigue(5)
 	
 	grid.tile_entered.emit(coordinates)
