@@ -32,7 +32,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ss1qb"]
 resource_name = "show"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -40,10 +39,10 @@ tracks/0/path = NodePath("Label3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 2),
-"transitions": PackedFloat32Array(0.5, 1, 1),
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 2, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.5, 0.4, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -87,9 +86,11 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 pixel_size = 0.01
 billboard = 1
 no_depth_test = true
+render_priority = 3
+outline_render_priority = 2
 text = "+1 Stamina"
 font = ExtResource("1_ss1qb")
-outline_size = 4
+outline_size = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

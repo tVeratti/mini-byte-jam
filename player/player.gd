@@ -46,6 +46,6 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.GOAL:
 			pass
 		Tile.Types.FATIGUE_REDUCTION:
-			player_stats.reduce_fatigue(5)
+			player_stats.reduce_fatigue()
 	
 	grid.tile_entered.emit(coordinates)

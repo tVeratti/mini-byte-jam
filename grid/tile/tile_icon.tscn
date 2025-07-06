@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccutjlu744503"]
+
+[ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="1_123na"]
+
+[node name="Sprite3D" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.380392)
+texture = ExtResource("1_123na")

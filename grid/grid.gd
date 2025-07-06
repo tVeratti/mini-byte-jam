@@ -26,14 +26,33 @@ const TILE_IDS:Dictionary[int, Tile.Types] = {
 	8: Tile.Types.FATIGUE_REDUCTION
 }
 
+const ICON_BATTLE_UID:String = "uid://dae03ox6o0lxn"
+const ICON_BUFF_ATTACK_UID:String = "uid://cdtuar3vyptkk"
+const ICON_BUFF_MORALE_UID:String = "uid://cmatcvxlnlqyf"
+const ICON_HEAL_UID:String = "uid://dbcuibms4nr5j"
+const ICON_SCOUT_UID:String = "uid://cyaddnhljuwx2"
+const ICON_FATIGUE_UID:String = "uid://cs6mjv22njc1d"
+
+
+const ICON_MAP:Dictionary[int, Texture] = {
+	Tile.Types.BATTLE: preload(ICON_BATTLE_UID),
+	Tile.Types.BUFF_ATTACK: preload(ICON_BUFF_ATTACK_UID),
+	Tile.Types.BUFF_MORALE: preload(ICON_BUFF_MORALE_UID),
+	Tile.Types.HEAL: preload(ICON_HEAL_UID),
+	Tile.Types.SCOUT: preload(ICON_SCOUT_UID),
+	Tile.Types.FATIGUE_REDUCTION: preload(ICON_FATIGUE_UID)
+}
+
 
 @export var scout_decal_texture:Texture
+@export var tile_icon_scene:PackedScene
 
 @export_tool_button("Generate Tiles")
 var button:Callable = generate_tiles
 
 
 var tiles:Dictionary[Vector3, Tile.Types] = {}
+var icons:Dictionary[Vector3, Sprite3D] ={}
 var goal_tile_coordinates:Vector3
 
 
@@ -55,9 +74,10 @@ func generate_tiles() -> void:
 	goal_tile_coordinates = grid_generator.generate_goal_coordinates(Vector3(center, 0, center))
 	tiles[goal_tile_coordinates] = Tile.Types.GOAL
 	
-	#for coord in tiles.keys():
-		#var type:Tile.Types = tiles[coord]
-		#set_cell_item(coord, type)
+	if Engine.is_editor_hint():
+		for coord in tiles.keys():
+			var type:Tile.Types = tiles[coord]
+			set_cell_item(coord, type)
 
 
 func show_tiles(center:Vector3, radius:int) -> void:
@@ -79,6 +99,20 @@ func show_tiles(center:Vector3, radius:int) -> void:
 					var tile_id:int = TILE_IDS[tile_type]
 					
 					set_cell_item(coordinates, tile_id)
+					
+					# Add tile icon
+					if ICON_MAP.has(tile_type) and not icons.has(coordinates):
+						var icon_node:Sprite3D = tile_icon_scene.instantiate()
+						icon_node.texture = ICON_MAP[tile_type]
+						add_child(icon_node)
+						icon_node.global_position = map_to_local(coordinates)
+						icon_node.global_position.y = 1.01
+						
+						# Set the color of the icon
+						var albedo = mesh_library.get_item_mesh(tile_type).surface_get_material(0).albedo_color
+						icon_node.modulate = albedo.lightened(0.2)
+						
+						icons[coordinates] = icon_node
 
 
 func _on_tile_entered(coordinates:Vector3) -> void:
@@ -90,6 +124,12 @@ func _on_tile_entered(coordinates:Vector3) -> void:
 			goal_entered.emit()
 	
 	radius_scouted.emit(coordinates, 1, false)
+	
+	# Remove icon
+	if icons.has(coordinates):
+		var icon:Sprite3D = icons[coordinates]
+		icon.queue_free()
+		icons.erase(coordinates)
 	
 	# Set the current location to `VISITED` so it doesn't trigger again later
 	var visited_id: = TILE_IDS[Tile.Types.VISITED]

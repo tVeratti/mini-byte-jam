@@ -1,21 +1,24 @@
-[gd_scene load_steps=17 format=3 uid="uid://nks0xww7yaic"]
+[gd_scene load_steps=18 format=3 uid="uid://nks0xww7yaic"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hcfg3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mq4l"]
+albedo_color = Color(0, 0.427451, 0.682353, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i1fj5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66i1r"]
-albedo_color = Color(0.392157, 0.423529, 1, 1)
+albedo_color = Color(0.2, 0.662745, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nnqi0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsvex"]
-albedo_color = Color(0.392157, 0.741176, 1, 1)
+albedo_color = Color(0.25098, 1, 0.917647, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_prbok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1fj5"]
-albedo_color = Color(0.423529, 1, 0.462745, 1)
+albedo_color = Color(0.513726, 1, 0.607843, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_66i1r"]
 
@@ -37,12 +40,13 @@ size = Vector3(1, 2, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_8s2o1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecw8"]
-albedo_color = Color(0.991173, 0.337104, 1, 1)
+albedo_color = Color(0.180392, 0.909804, 0.623529, 1)
 
 [node name="GridMeshLibrary" type="Node3D"]
 
 [node name="Visited" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_hcfg3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2mq4l")
 
 [node name="BuffAttack" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_i1fj5")

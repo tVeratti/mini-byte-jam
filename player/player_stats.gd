@@ -8,6 +8,7 @@ signal health_zero
 
 const DEFAULT_HEALTH_MAX:int = 5
 const MAX_FATIGUE:int = 100
+const FATIGUE_REDUCTION_MULTIPLIER:float = 0.1
 
 
 var fatigue:int = 1
@@ -58,7 +59,8 @@ func increase_fatigue() -> void:
 	stats_changed.emit()
 
 
-func reduce_fatigue(amount:int) -> void:
+func reduce_fatigue() -> void:
+	var amount:int = ceil(fatigue * FATIGUE_REDUCTION_MULTIPLIER)
 	fatigue = max(fatigue - amount, 0)
 	stats_changed.emit()
 	notifications.render("-%s Fatigue" % amount)

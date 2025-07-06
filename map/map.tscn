@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=13 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
 [ext_resource type="PackedScene" uid="uid://bcvlm28nt0iwi" path="res://battle/battle.tscn" id="2_kffv2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dhgn5s74308uh" path="res://map/goal_window/goal_window.tscn" id="3_7lyie"]
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="3_iw27f"]
 [ext_resource type="Shader" uid="uid://cviwov15lli60" path="res://map/tilt_shift.gdshader" id="4_7lyie"]
+[ext_resource type="Shader" uid="uid://dkv0i4425ve43" path="res://map/ocean.gdshader" id="7_5jdw0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5jdw0"]
 shader = ExtResource("4_7lyie")
@@ -14,9 +15,23 @@ shader_parameter/blur = 1.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_kffv2"]
 size = Vector2(100, 100)
+subdivide_width = 32
+subdivide_depth = 32
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kffv2"]
-albedo_color = Color(0, 0.482353, 0.631373, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5jdw0"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kxmgb"]
+seamless = true
+noise = SubResource("FastNoiseLite_5jdw0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxmgb"]
+render_priority = 0
+shader = ExtResource("7_5jdw0")
+shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_kxmgb")
+shader_parameter/uv_offset_scale = Vector2(0.1, 0.1)
+shader_parameter/time_scale = Vector2(0.02, 0)
+shader_parameter/color = Color(0, 0.283727, 0.463718, 1)
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_p5pve")
@@ -58,9 +73,10 @@ layout_mode = 2
 unique_name_in_owner = true
 
 [node name="Ocean" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.3, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
 mesh = SubResource("QuadMesh_kffv2")
-surface_material_override/0 = SubResource("StandardMaterial3D_kffv2")
+surface_material_override/0 = SubResource("ShaderMaterial_kxmgb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.781074, 0.624439, 0, -0.624439, -0.781074, 0, 18.698, 0)
