@@ -2,5 +2,5 @@ extends CanvasLayer
 
 
 func _on_new_game_pressed() -> void:
-	SceneLoader.load_scene(SceneLoader.MAP)
+	SceneManager.load_scene(SceneManager.MAP)
 	queue_free()

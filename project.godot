@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneLoader="*res://autoload/scene_loader.gd"
+SceneManager="*res://autoload/scene_manager.gd"
+AudioManager="*res://autoload/audio_manager.gd"
 
 [global_group]
 

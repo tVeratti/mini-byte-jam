@@ -31,7 +31,7 @@ shader = ExtResource("7_5jdw0")
 shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_kxmgb")
 shader_parameter/uv_offset_scale = Vector2(0.1, 0.1)
 shader_parameter/time_scale = Vector2(0.02, 0)
-shader_parameter/color = Color(0, 0.219608, 0.329412, 1)
+shader_parameter/color = Color(3.36915e-07, 0.255718, 0.315091, 1)
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_p5pve")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcvlm28nt0iwi"]
+[gd_scene load_steps=11 format=3 uid="uid://bcvlm28nt0iwi"]
 
 [ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://battle/battle.gd" id="1_mqutd"]
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://battle/battle_result.tscn" id="2_tiqy5"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_qubjc"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="4_4mnim"]
+[ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="4_l1kiu"]
 [ext_resource type="Texture2D" uid="uid://ckoxg6w3iv18c" path="res://grid/tile/assets/arrow_outline.png" id="5_4mnim"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubjc"]
@@ -13,20 +14,26 @@ bg_color = Color(0, 0, 0, 0.541176)
 font = ExtResource("3_qubjc")
 font_size = 80
 outline_size = 10
-outline_color = Color(0, 0.219608, 0.25098, 1)
+outline_color = Color(6.16074e-06, 0.63509, 0.839795, 1)
 shadow_size = 10
-shadow_color = Color(0, 0.219608, 0.25098, 1)
+shadow_color = Color(6.16074e-06, 0.63509, 0.839795, 1)
 shadow_offset = Vector2(4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
 font = ExtResource("4_4mnim")
-font_color = Color(0.0196078, 0.65098, 0.588235, 1)
-outline_size = 5
-outline_color = Color(0, 0.352941, 0.356863, 1)
+font_color = Color(6.16074e-06, 0.63509, 0.839795, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqutd"]
-bg_color = Color(0, 0.219608, 0.25098, 1)
-border_color = Color(0.00784314, 0.317647, 0.34902, 1)
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(6.16074e-06, 0.63509, 0.839795, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Battle" type="MarginContainer"]
 anchors_preset = 15
@@ -67,9 +74,24 @@ text = "Battle!"
 label_settings = SubResource("LabelSettings_6hnvb")
 horizontal_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/HBoxContainer/Title"]
+modulate = Color(6.16074e-06, 0.63509, 0.839795, 1)
+show_behind_parent = true
+texture_filter = 4
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_left = -63.0
+offset_top = -13.0
+offset_right = 57.0
+offset_bottom = 107.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_l1kiu")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Level" type="Label" parent="MarginContainer/Layout/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Level 001"
@@ -99,20 +121,22 @@ offset_bottom = -41.0
 [node name="TargetContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="Morale" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-color = Color(0, 0.54902, 0.447059, 1)
+color = Color(0.446232, 0.823997, 1, 1)
 
 [node name="Attack" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-color = Color(0.870588, 1, 0.521569, 1)
+color = Color(6.16074e-06, 0.63509, 0.839795, 1)
 
 [node name="InputContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
 unique_name_in_owner = true

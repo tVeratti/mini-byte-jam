@@ -7,5 +7,5 @@ func _ready():
 
  
 func _on_button_pressed() -> void:
-	SceneLoader.load_scene(SceneLoader.MAP)
+	SceneManager.load_scene(SceneManager.MAP)
 	queue_free()

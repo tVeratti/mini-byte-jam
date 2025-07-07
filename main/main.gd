@@ -39,4 +39,4 @@ extends Node3D
 
 func _ready() -> void:
 	player.process_mode = Node.PROCESS_MODE_DISABLED
-	SceneLoader.main_root = scene_root
+	SceneManager.main_root = scene_root
