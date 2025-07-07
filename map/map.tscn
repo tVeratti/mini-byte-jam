@@ -14,7 +14,7 @@ shader_parameter/limit = 0.5
 shader_parameter/blur = 1.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_kffv2"]
-size = Vector2(100, 100)
+size = Vector2(50, 50)
 subdivide_width = 32
 subdivide_depth = 32
 
@@ -31,7 +31,7 @@ shader = ExtResource("7_5jdw0")
 shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_kxmgb")
 shader_parameter/uv_offset_scale = Vector2(0.1, 0.1)
 shader_parameter/time_scale = Vector2(0.02, 0)
-shader_parameter/color = Color(0, 0.283727, 0.463718, 1)
+shader_parameter/color = Color(0, 0.219608, 0.329412, 1)
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_p5pve")
@@ -74,7 +74,7 @@ unique_name_in_owner = true
 
 [node name="Ocean" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 22, 0, 22)
 mesh = SubResource("QuadMesh_kffv2")
 surface_material_override/0 = SubResource("ShaderMaterial_kxmgb")
 

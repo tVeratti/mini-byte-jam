@@ -4,6 +4,10 @@ extends PlayerState
 # PlayerState: Move
 # Move to intended direction
 
+
+@export var move_audio:Array[AudioStream] = []
+
+
 var queued_next_intent:Vector3
 
 
@@ -19,6 +23,13 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(player, "global_position", target_position, 0.5)
 	tween.tween_callback(_goto_next_state)
+	
+	var audio_player: = AudioStreamPlayer.new()
+	owner.add_child(audio_player)
+	audio_player.stream = move_audio.pick_random()
+	audio_player.pitch_scale = 1 + randf_range(-0.2, 0.2)
+	audio_player.play()
+	audio_player.finished.connect(audio_player.queue_free)
 
 
 func _goto_next_state() -> void:

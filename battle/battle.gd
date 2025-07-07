@@ -8,7 +8,7 @@ signal ended(result)
 const LEVEL_WEIGHT:float = 10.0
 
 const TRACK_WIDTH:int = 600
-const NEEDLE_WIDTH:int = 5
+const NEEDLE_WIDTH:int = 2
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
 

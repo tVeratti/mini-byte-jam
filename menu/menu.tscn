@@ -1,31 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc02vevc3mc8q"]
+[gd_scene load_steps=12 format=3 uid="uid://cc02vevc3mc8q"]
 
 [ext_resource type="Script" uid="uid://dsbf2who6sb23" path="res://menu/menu.gd" id="1_j0t7f"]
-[ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="2_g18jx"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6nwqt"]
-font = ExtResource("2_g18jx")
-font_size = 80
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.313726)
-shadow_offset = Vector2(4, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g18jx"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="LabelSettings" uid="uid://bfqctg5xliu8o" path="res://assets/title_label_settings.tres" id="2_043lm"]
+[ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="3_043lm"]
+[ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="3_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://cs6mjv22njc1d" path="res://grid/tile/assets/fatigue.png" id="4_iesyu"]
+[ext_resource type="StyleBox" uid="uid://cotr02bcpjcqi" path="res://menu/button_style.tres" id="4_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://cyaddnhljuwx2" path="res://grid/tile/assets/scout.png" id="5_iuxab"]
+[ext_resource type="StyleBox" uid="uid://sg6leeg6q7i" path="res://menu/button_style_pressed.tres" id="5_juveg"]
+[ext_resource type="StyleBox" uid="uid://bm0ompjupe7go" path="res://menu/button_style_hover.tres" id="5_svuvw"]
+[ext_resource type="Texture2D" uid="uid://cmatcvxlnlqyf" path="res://grid/tile/assets/morale.png" id="6_dmxns"]
+[ext_resource type="Texture2D" uid="uid://dbcuibms4nr5j" path="res://grid/tile/assets/heal.png" id="7_3vbpa"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_j0t7f")
@@ -37,6 +22,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Content"]
+layout_mode = 2
+color = Color(0.00784314, 0.317647, 0.34902, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Content"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -47,12 +36,47 @@ theme_override_constants/separation = 16
 [node name="Label" type="Label" parent="Content/VBoxContainer"]
 layout_mode = 2
 text = "Which Way Captain?"
-label_settings = SubResource("LabelSettings_6nwqt")
+label_settings = ExtResource("2_043lm")
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/VBoxContainer"]
+modulate = Color(0.0117647, 0.498039, 0.54902, 0.27451)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_043lm")
+
+[node name="TextureRect2" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_iesyu")
+
+[node name="TextureRect3" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_iuxab")
+
+[node name="TextureRect4" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_dmxns")
+
+[node name="TextureRect5" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_3vbpa")
 
 [node name="NewGame" type="Button" parent="Content/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_g18jx")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_pbjm4")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover_pressed = ExtResource("5_juveg")
+theme_override_styles/hover = ExtResource("5_svuvw")
+theme_override_styles/pressed_mirrored = ExtResource("5_juveg")
+theme_override_styles/pressed = ExtResource("5_juveg")
+theme_override_styles/normal_mirrored = ExtResource("4_pbjm4")
+theme_override_styles/normal = ExtResource("4_pbjm4")
 text = "Weigh Anchor!"
 
 [connection signal="pressed" from="Content/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bfqctg5xliu8o"]
+
+[ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="1_if033"]
+
+[resource]
+font = ExtResource("1_if033")
+font_size = 80
+outline_size = 10
+outline_color = Color(0, 0.219608, 0.25098, 1)
+shadow_color = Color(0, 0.219608, 0.25098, 1)
+shadow_offset = Vector2(4, 4)

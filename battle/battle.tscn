@@ -1,28 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcvlm28nt0iwi"]
+[gd_scene load_steps=10 format=3 uid="uid://bcvlm28nt0iwi"]
 
 [ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://battle/battle.gd" id="1_mqutd"]
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://battle/battle_result.tscn" id="2_tiqy5"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_qubjc"]
-[ext_resource type="Texture2D" uid="uid://ir2ktjpp1f7n" path="res://battle/assets/compass_needle.png" id="4_6hnvb"]
+[ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="4_4mnim"]
+[ext_resource type="Texture2D" uid="uid://ckoxg6w3iv18c" path="res://grid/tile/assets/arrow_outline.png" id="5_4mnim"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubjc"]
-bg_color = Color(0, 0, 0, 0.313726)
+bg_color = Color(0, 0, 0, 0.541176)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6hnvb"]
 font = ExtResource("3_qubjc")
-font_size = 112
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.313726)
+font_size = 80
+outline_size = 10
+outline_color = Color(0, 0.219608, 0.25098, 1)
+shadow_size = 10
+shadow_color = Color(0, 0.219608, 0.25098, 1)
 shadow_offset = Vector2(4, 4)
 
+[sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
+font = ExtResource("4_4mnim")
+font_color = Color(0.0196078, 0.65098, 0.588235, 1)
+outline_size = 5
+outline_color = Color(0, 0.352941, 0.356863, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqutd"]
-bg_color = Color(0, 0, 0, 0.666667)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.94902, 0.627451, 0.027451, 1)
+bg_color = Color(0, 0.219608, 0.25098, 1)
+border_color = Color(0.00784314, 0.317647, 0.34902, 1)
 
 [node name="Battle" type="MarginContainer"]
 anchors_preset = 15
@@ -47,12 +51,31 @@ theme_override_constants/margin_bottom = 64
 
 [node name="Layout" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
 
-[node name="Title" type="Label" parent="MarginContainer/Layout"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/Layout/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 text = "Battle!"
 label_settings = SubResource("LabelSettings_6hnvb")
 horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="MarginContainer/Layout/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level 001"
+label_settings = SubResource("LabelSettings_l1kiu")
+horizontal_alignment = 1
+uppercase = true
 
 [node name="TrackContainer" type="MarginContainer" parent="MarginContainer/Layout"]
 custom_minimum_size = Vector2(600, 50)
@@ -68,30 +91,28 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mqutd")
 [node name="ResultRoot" type="Control" parent="MarginContainer/Layout/TrackContainer/Track"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -55.0
-offset_top = -77.0
-offset_right = -15.0
-offset_bottom = -37.0
+offset_left = 142.0
+offset_top = -81.0
+offset_right = 182.0
+offset_bottom = -41.0
 
 [node name="TargetContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_bottom = 2
 
 [node name="Morale" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-color = Color(0.94902, 0.627451, 0.027451, 1)
+color = Color(0, 0.54902, 0.447059, 1)
 
 [node name="Attack" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-color = Color(0.94902, 0.360784, 0.0196078, 1)
+color = Color(0.870588, 1, 0.521569, 1)
 
 [node name="InputContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
 unique_name_in_owner = true
@@ -108,15 +129,9 @@ color = Color(0, 0, 0, 0)
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/TrackContainer/InputContainer/Input"]
 texture_filter = 4
 layout_mode = 0
-offset_left = -10.0
-offset_top = 16.0
-offset_right = 10.0
-offset_bottom = 96.0
-texture = ExtResource("4_6hnvb")
+offset_left = -20.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 70.0
+texture = ExtResource("5_4mnim")
 expand_mode = 1
-
-[node name="Level" type="Label" parent="MarginContainer/Layout"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Level 001"
-horizontal_alignment = 1
