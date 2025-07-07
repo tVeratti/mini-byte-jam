@@ -10,7 +10,7 @@ const MOVE_INTENT: = "MoveIntent"
 const MOVE: = "Move"
 const BUFF: = "Buff"
 const HEAL: = "Heal"
-const BATTLE: = "Battle"
+const ENCOUNTER: = "Encounter"
 
 
 @onready var player:Player = owner

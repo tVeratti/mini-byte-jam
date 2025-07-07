@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://c43iodsc02gpc"]
+
+[ext_resource type="Script" uid="uid://ksaedy85vutt" path="res://encounters/jig/jig.gd" id="1_mxy8j"]
+[ext_resource type="PackedScene" uid="uid://d0u1uysuexi8w" path="res://encounters/jig/jig_direction.tscn" id="2_q6ne0"]
+[ext_resource type="Texture2D" uid="uid://cs6mjv22njc1d" path="res://grid/tile/assets/fatigue.png" id="3_cjcxp"]
+[ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_scq0y"]
+[ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="5_h2mwq"]
+[ext_resource type="Texture2D" uid="uid://ckoxg6w3iv18c" path="res://grid/tile/assets/arrow_outline.png" id="6_udkic"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubjc"]
+bg_color = Color(0, 0, 0, 0.541176)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6hnvb"]
+font = ExtResource("3_scq0y")
+font_size = 80
+outline_size = 10
+outline_color = Color(0.0117647, 0.498039, 0.54902, 1)
+shadow_size = 10
+shadow_color = Color(0.0117647, 0.498039, 0.54902, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
+font = ExtResource("5_h2mwq")
+font_color = Color(0.0117647, 0.498039, 0.54902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwdto"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0117647, 0.498039, 0.54902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Jig" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxy8j")
+jig_direction_scene = ExtResource("2_q6ne0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qubjc")
+
+[node name="ResultRoot" type="Control" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 351.0
+offset_right = 876.0
+offset_bottom = 401.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 64
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Header" type="VBoxContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/Layout/Header"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Jig!"
+label_settings = SubResource("LabelSettings_6hnvb")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/Header/Title"]
+modulate = Color(0.0117647, 0.498039, 0.54902, 1)
+show_behind_parent = true
+texture_filter = 4
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_left = -96.2368
+offset_top = -59.915
+offset_right = 23.7632
+offset_bottom = 60.085
+rotation = 0.427606
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_cjcxp")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/Layout/Header/Title"]
+modulate = Color(0.0117647, 0.498039, 0.54902, 1)
+show_behind_parent = true
+texture_filter = 4
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_left = -69.2368
+offset_top = -7.91504
+offset_right = 50.7632
+offset_bottom = 112.085
+rotation = -0.534071
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_cjcxp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Level" type="Label" parent="MarginContainer/Layout/Header"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level 001"
+label_settings = SubResource("LabelSettings_l1kiu")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TrackContainer" type="MarginContainer" parent="MarginContainer/Layout"]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Track" type="Panel" parent="MarginContainer/Layout/TrackContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gwdto")
+
+[node name="InputContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="Input" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/InputContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0, 0, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/TrackContainer/InputContainer/Input"]
+texture_filter = 4
+layout_mode = 0
+offset_left = 516.0
+offset_top = 30.0
+offset_right = 556.0
+offset_bottom = 70.0
+texture = ExtResource("6_udkic")
+expand_mode = 1
+
+[node name="MovesRoot" type="Control" parent="MarginContainer/Layout/TrackContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

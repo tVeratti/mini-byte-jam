@@ -17,13 +17,15 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	player.input_component.direction_changed.connect(_on_direction_changed)
 	
 	var target_position:Vector3 = player.player_direction_intent.global_position
+	player.boat.look_at(Vector3.UP, target_position)
+	#player.boat.rotation.x = 0.0
+	#player.boat.rotation.z = 0.0
 	
 	var tween: = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(player, "global_position", target_position, 0.5)
 	tween.tween_callback(_goto_next_state)
-	
 	AudioManager.play_audio.emit(move_audio.pick_random())
 
 
@@ -35,8 +37,8 @@ func _goto_next_state() -> void:
 	var next_tile_type = player_direction_intent.next_tile_type
 	
 	match(next_tile_type):
-		Tile.Types.BATTLE:
-			finished.emit(BATTLE)
+		Tile.Types.BATTLE, Tile.Types.JIG:
+			finished.emit(ENCOUNTER)
 		_:
 			if queued_next_intent.is_zero_approx():
 				finished.emit(IDLE)

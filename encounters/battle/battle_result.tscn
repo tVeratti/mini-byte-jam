@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2x5nb8xutljl"]
 
-[ext_resource type="Script" uid="uid://dcjnai14qxhp2" path="res://battle/battle_result.gd" id="1_2ok3a"]
+[ext_resource type="Script" uid="uid://dcjnai14qxhp2" path="res://encounters/battle/battle_result.gd" id="1_2ok3a"]
 [ext_resource type="LabelSettings" uid="uid://cxqofppwjhrtu" path="res://assets/header_font_settings.tres" id="2_pt6fb"]
 
 [sub_resource type="Animation" id="Animation_2ok3a"]

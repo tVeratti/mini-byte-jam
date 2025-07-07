@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://nks0xww7yaic"]
+[gd_scene load_steps=20 format=3 uid="uid://nks0xww7yaic"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hcfg3"]
 
@@ -42,6 +42,11 @@ size = Vector3(1, 2, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecw8"]
 albedo_color = Color(0.0156863, 0.85098, 0.85098, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_xsvex"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1a5f"]
+albedo_color = Color(0.0117647, 0.498039, 0.54902, 1)
+
 [node name="GridMeshLibrary" type="Node3D"]
 
 [node name="Visited" type="MeshInstance3D" parent="."]
@@ -79,3 +84,7 @@ mesh = SubResource("PrismMesh_66i1r")
 [node name="Fatigue" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8s2o1")
 surface_material_override/0 = SubResource("StandardMaterial3D_cecw8")
+
+[node name="Jig" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xsvex")
+surface_material_override/0 = SubResource("StandardMaterial3D_d1a5f")

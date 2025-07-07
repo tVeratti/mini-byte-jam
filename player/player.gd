@@ -13,6 +13,7 @@ signal coordinates_changed(coordinates:Vector3)
 @onready var state_label:Label3D = %StateLabel
 @onready var camera_3d:Camera3D = $Camera3D
 @onready var player_notifications:PlayerNotifications = %PlayerNotifications
+@onready var boat:Node3D = %Boat
 
 
 func _ready() -> void:
@@ -44,7 +45,7 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.BATTLE:
 			pass
 		Tile.Types.GOAL:
-			pass
+			player_stats.reduce_fatigue()
 		Tile.Types.FATIGUE_REDUCTION:
 			player_stats.reduce_fatigue()
 	

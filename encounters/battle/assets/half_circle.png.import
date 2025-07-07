@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceytarhvv1wuv"
-path="res://.godot/imported/half_circle.png-554f1da76df05b0d015f9648f6dcfc51.ctex"
+path="res://.godot/imported/half_circle.png-35ebc75844aa72a23186b8fcadd11419.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://battle/assets/half_circle.png"
-dest_files=["res://.godot/imported/half_circle.png-554f1da76df05b0d015f9648f6dcfc51.ctex"]
+source_file="res://encounters/battle/assets/half_circle.png"
+dest_files=["res://.godot/imported/half_circle.png-35ebc75844aa72a23186b8fcadd11419.ctex"]
 
 [params]
 

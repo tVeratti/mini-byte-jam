@@ -3,10 +3,10 @@ extends Control
 
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 
-@onready var health:Label = %Health
-@onready var morale:Label = %Morale
-@onready var attack:Label = %Attack
-@onready var fatigue: Label = %Fatigue
+@onready var health:ProgressBar = %HealthProgress
+@onready var morale:ProgressBar = %MoraleProgress
+@onready var attack:ProgressBar = %AttackProgress
+@onready var fatigue:ProgressBar = %FatigueProgress
 
 
 func _ready() -> void:
@@ -17,10 +17,12 @@ func _ready() -> void:
 func render() -> void:
 	var stats: = player.player_stats
 	
-	health.text = "Health %s/%s" % [stats.health_current, stats.health_max]
-	morale.text = "Morale %s" % stats.morale
-	attack.text = "Attack %s" % stats.attack
-	fatigue.text = "Fatigue %s" % stats.fatigue
+	var fatigue_value:float = stats.fatigue
+	
+	health.value = stats.health_current / stats.health_max
+	morale.value = stats.morale / fatigue_value
+	attack.value = stats.attack / fatigue_value
+	fatigue.value = fatigue_value / PlayerStats.MAX_FATIGUE
 
 
 func _on_stats_changed() -> void:

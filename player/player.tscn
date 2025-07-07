@@ -12,10 +12,7 @@
 [ext_resource type="Script" uid="uid://dwbl70wqotcrg" path="res://player/player_notifications.gd" id="9_8t03j"]
 [ext_resource type="AudioStream" uid="uid://5g8tc1t3k67a" path="res://assets/sounds/move_02.wav" id="9_yllr7"]
 [ext_resource type="PackedScene" uid="uid://dpbdpvcta4iie" path="res://scroll_text/scroll_text.tscn" id="10_2ieo8"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
-radius = 0.4
-height = 0.8
+[ext_resource type="PackedScene" uid="uid://dbe7au8ese2yb" path="res://player/boat.tscn" id="13_yllr7"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_qjkh3"]
 size = Vector3(0.3, 0.3, 0.1)
@@ -24,7 +21,6 @@ size = Vector3(0.3, 0.3, 0.1)
 shading_mode = 0
 
 [node name="Player" type="MeshInstance3D" groups=["player"]]
-mesh = SubResource("SphereMesh_kqu6x")
 script = ExtResource("1_rkbax")
 
 [node name="InputComponent" type="Node" parent="."]
@@ -51,7 +47,7 @@ script = ExtResource("5_boad6")
 script = ExtResource("5_qjkh3")
 move_audio = Array[AudioStream]([ExtResource("9_yllr7")])
 
-[node name="Battle" type="Node" parent="PlayerStateMachine"]
+[node name="Encounter" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_hg6s5")
 
 [node name="PlayerNotifications" type="Node3D" parent="."]
@@ -82,3 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820143, 0)
 visible = false
 billboard = 1
 text = "IDLE"
+
+[node name="Boat" parent="." instance=ExtResource("13_yllr7")]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -0.490935)

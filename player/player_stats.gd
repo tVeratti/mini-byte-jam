@@ -8,7 +8,7 @@ signal health_zero
 
 const DEFAULT_HEALTH_MAX:int = 5
 const MAX_FATIGUE:int = 100
-const FATIGUE_REDUCTION_MULTIPLIER:float = 0.1
+const FATIGUE_REDUCTION_MULTIPLIER:float = 0.5
 
 
 var fatigue:int = 1

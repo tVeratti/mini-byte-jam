@@ -1,8 +1,5 @@
 class_name Battle
-extends MarginContainer
-
-
-signal ended(result)
+extends Encounter
 
 
 const LEVEL_WEIGHT:float = 10.0
@@ -14,9 +11,6 @@ const MIN_TARGET_OFFSET:int = 80
 
 const MOVE_SPEED_MIN:float = 100.0
 const MOVE_SPEED_MAX:float = 700.0
-
-
-enum Results { SUCCESS, RETRY, FAIL }
 
 
 @export var result_scene:PackedScene
@@ -61,6 +55,8 @@ func _process(delta: float) -> void:
 
 
 func _set_target_sizes() -> void:
+	battle_level = player_stats.fatigue
+	
 	var weighted_level:float = battle_level * LEVEL_WEIGHT
 	level.text = "Fatigue Level %s" % int(battle_level)
 	
@@ -117,7 +113,8 @@ func _end_battle() -> void:
 	elif input_position + NEEDLE_WIDTH > morale.position.x and input_position - NEEDLE_WIDTH < morale.position.x + morale.custom_minimum_size.x:
 		# Within MORALE range
 		result = Results.RETRY
-	
+		player_stats.increase_fatigue()
+		
 	else:
 		# FAIL
 		result = Results.FAIL
@@ -131,6 +128,7 @@ func _end_battle() -> void:
 	ended.emit(result)
 	
 	if result == Results.RETRY:
+		_set_target_sizes()
 		freeze_input = false
 		_reset()
 	
