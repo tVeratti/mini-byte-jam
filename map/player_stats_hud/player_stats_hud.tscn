@@ -19,14 +19,14 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg1bh"]
 bg_color = Color(0.0196078, 0.65098, 0.588235, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yat35"]
-bg_color = Color(0.0156863, 0.85098, 0.85098, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whajq"]
 bg_color = Color(6.16074e-06, 0.63509, 0.839795, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q2d7"]
 bg_color = Color(0.0117647, 0.498039, 0.54902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yat35"]
+bg_color = Color(0.784314, 0.262745, 0.721569, 1)
 
 [node name="PlayerStatsHud" type="MarginContainer"]
 anchors_preset = 15
@@ -41,8 +41,8 @@ script = ExtResource("1_p5avf")
 [node name="VBoxContainer" type="GridContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 2
 
 [node name="HealthIcon" type="TextureRect" parent="VBoxContainer"]
@@ -70,33 +70,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_jbggd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yg1bh")
 max_value = 1.0
 value = 0.5
-show_percentage = false
-
-[node name="FatigueIcon" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("6_jbggd")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Fatigue" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Fatigue"
-label_settings = SubResource("LabelSettings_jbggd")
-horizontal_alignment = 1
-
-[node name="FatigueProgress" type="ProgressBar" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_jbggd")
-theme_override_styles/fill = SubResource("StyleBoxFlat_yat35")
-max_value = 1.0
-value = 1.0
 show_percentage = false
 
 [node name="AttackIcon" type="TextureRect" parent="VBoxContainer"]
@@ -151,4 +124,31 @@ theme_override_styles/background = SubResource("StyleBoxFlat_jbggd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7q2d7")
 max_value = 1.0
 value = 0.6
+show_percentage = false
+
+[node name="FatigueIcon" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_jbggd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Fatigue" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Fatigue"
+label_settings = SubResource("LabelSettings_jbggd")
+horizontal_alignment = 1
+
+[node name="FatigueProgress" type="ProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_jbggd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yat35")
+max_value = 1.0
+value = 1.0
 show_percentage = false

@@ -75,9 +75,12 @@ func generate_tiles() -> void:
 	tiles = grid_generator.generate_tiles()
 	
 	# Set Goal tile
-	var center = grid_generator.grid_size / 2.0
-	goal_tile_coordinates = grid_generator.generate_goal_coordinates(Vector3(center, 0, center))
+	var center:int = grid_generator.grid_size / 2.0
+	var center_coord: = Vector3(center, 0, center)
+	goal_tile_coordinates = grid_generator.generate_goal_coordinates(center_coord)
 	tiles[goal_tile_coordinates] = Tile.Types.GOAL
+	
+	tiles = grid_generator.check_goal_path(center_coord, goal_tile_coordinates, tiles)
 	
 	if Engine.is_editor_hint():
 		for coord in tiles.keys():
