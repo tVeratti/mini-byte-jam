@@ -1,43 +1,47 @@
-[gd_scene load_steps=13 format=3 uid="uid://c43iodsc02gpc"]
+[gd_scene load_steps=14 format=3 uid="uid://c43iodsc02gpc"]
 
 [ext_resource type="Script" uid="uid://ksaedy85vutt" path="res://encounter/jig/jig.gd" id="1_mxy8j"]
 [ext_resource type="PackedScene" uid="uid://d0u1uysuexi8w" path="res://encounter/jig/jig_direction.tscn" id="2_q6ne0"]
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="3_s6ojh"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_scq0y"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="5_h2mwq"]
-[ext_resource type="Texture2D" uid="uid://jadm4msu5o3p" path="res://grid/tile/assets/arrow.png" id="6_q6ne0"]
-[ext_resource type="Texture2D" uid="uid://bfj3cwx5kspn8" path="res://grid/tile/assets/jig.png" id="6_s6ojh"]
+[ext_resource type="Shader" uid="uid://dye45fsapwka5" path="res://assets/shaders/lines.gdshader" id="7_sum53"]
+[ext_resource type="LabelSettings" uid="uid://u6018fifyd8o" path="res://assets/label.tres" id="8_helyc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubjc"]
 bg_color = Color(0, 0, 0, 0.541176)
 
-[sub_resource type="LabelSettings" id="LabelSettings_6hnvb"]
-font = ExtResource("3_scq0y")
-font_size = 80
-outline_size = 10
-outline_color = Color(0.0156863, 0.768627, 0.85098, 1)
-shadow_size = 10
-shadow_color = Color(0.0156863, 0.768627, 0.85098, 1)
-shadow_offset = Vector2(4, 4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
+[sub_resource type="LabelSettings" id="LabelSettings_sum53"]
 font = ExtResource("5_h2mwq")
-font_color = Color(0.0196078, 0.65098, 0.588235, 1)
+font_size = 24
+font_color = Color(0.0156863, 0.768627, 0.85098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwdto"]
-bg_color = Color(0, 0.219608, 0.25098, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 40
-border_width_bottom = 4
-border_color = Color(0.0156863, 0.768627, 0.85098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sum53"]
+bg_color = Color(0.0156863, 0.768627, 0.85098, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="LabelSettings" id="LabelSettings_s6ojh"]
-font = ExtResource("5_h2mwq")
+[sub_resource type="LabelSettings" id="LabelSettings_6hnvb"]
+font = ExtResource("3_scq0y")
+font_size = 80
+outline_color = Color(0, 0.219608, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwdto"]
+bg_color = Color(0, 0.219608, 0.25098, 1)
+border_width_right = 1
+border_color = Color(0.0156863, 0.768627, 0.85098, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_helyc"]
+shader = ExtResource("7_sum53")
+shader_parameter/color_one = Color(0, 0.219608, 0.25098, 1)
+shader_parameter/color_two = Color(0, 0.283384, 0.322043, 1)
+shader_parameter/angle = 20.0
+shader_parameter/line_count = 100.0
+shader_parameter/blur = 0.0
 
 [node name="Jig" type="MarginContainer"]
 anchors_preset = 15
@@ -55,25 +59,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qubjc")
 
 [node name="ResultRoot" type="Control" parent="Panel"]
 unique_name_in_owner = true
-z_index = 10
+z_index = 100
 layout_mode = 2
 anchors_preset = 0
-offset_left = 265.0
-offset_top = 220.0
-offset_right = 265.0
-offset_bottom = 220.0
-
-[node name="InputArrow" type="TextureRect" parent="Panel"]
-unique_name_in_owner = true
-modulate = Color(0.0156863, 0.768627, 0.85098, 1)
-layout_mode = 2
-offset_left = 821.0
-offset_top = 237.0
-offset_right = 851.0
-offset_bottom = 267.0
-texture = ExtResource("6_q6ne0")
-expand_mode = 1
-flip_v = true
+offset_left = 583.0
+offset_top = 391.0
+offset_right = 583.0
+offset_bottom = 391.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -85,41 +77,31 @@ theme_override_constants/margin_bottom = 64
 
 [node name="Layout" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Header" type="VBoxContainer" parent="MarginContainer/Layout"]
-layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-alignment = 1
+theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="MarginContainer/Layout/Header"]
+[node name="Label" type="Label" parent="MarginContainer/Layout"]
+layout_mode = 2
+text = "Morale Encounter"
+label_settings = SubResource("LabelSettings_sum53")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sum53")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Layout/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Title" type="Label" parent="MarginContainer/Layout/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "Do A Jig!"
 label_settings = SubResource("LabelSettings_6hnvb")
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/Header/Title"]
-modulate = Color(0.0156863, 0.768627, 0.85098, 1)
-show_behind_parent = true
-layout_mode = 0
-offset_left = -95.0
-offset_top = -2.0
-offset_right = -15.0
-offset_bottom = 78.0
-scale = Vector2(1.42251, 1.42251)
-texture = ExtResource("6_s6ojh")
-
-[node name="Level" type="Label" parent="MarginContainer/Layout/Header"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Level 001"
-label_settings = SubResource("LabelSettings_l1kiu")
-horizontal_alignment = 1
-uppercase = true
 
 [node name="TrackContainer" type="MarginContainer" parent="MarginContainer/Layout"]
 custom_minimum_size = Vector2(600, 160)
@@ -132,6 +114,16 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gwdto")
 
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/Track"]
+material = SubResource("ShaderMaterial_helyc")
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 559.0
+offset_right = 599.0
+grow_vertical = 2
+
 [node name="MovesRoot" type="Control" parent="MarginContainer/Layout/TrackContainer/Track"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -139,13 +131,23 @@ anchors_preset = 0
 offset_top = 40.0
 offset_bottom = 40.0
 
-[node name="Instructions" type="Label" parent="MarginContainer/Layout"]
-unique_name_in_owner = true
-visible = false
+[node name="Stats" type="HBoxContainer" parent="MarginContainer/Layout"]
 layout_mode = 2
-text = "[SPACE] or [ENTER] to START"
-label_settings = SubResource("LabelSettings_s6ojh")
-horizontal_alignment = 1
+
+[node name="MoraleValue" type="Label" parent="MarginContainer/Layout/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Morale: 10"
+label_settings = ExtResource("8_helyc")
+
+[node name="FatigueValue" type="Label" parent="MarginContainer/Layout/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fatigue: 20"
+label_settings = ExtResource("8_helyc")
+horizontal_alignment = 2
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

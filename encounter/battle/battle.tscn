@@ -4,11 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="2_tiqy5"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_qubjc"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="4_4mnim"]
-[ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="4_l1kiu"]
-[ext_resource type="Texture2D" uid="uid://ckoxg6w3iv18c" path="res://grid/tile/assets/arrow_outline.png" id="5_4mnim"]
+[ext_resource type="Texture2D" uid="uid://jadm4msu5o3p" path="res://grid/tile/assets/arrow.png" id="4_v5t24"]
+[ext_resource type="LabelSettings" uid="uid://u6018fifyd8o" path="res://assets/label.tres" id="5_imjxj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubjc"]
 bg_color = Color(0, 0, 0, 0.541176)
+
+[sub_resource type="LabelSettings" id="LabelSettings_imjxj"]
+font = ExtResource("4_4mnim")
+font_size = 24
+font_color = Color(0.0156863, 0.768627, 0.85098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_426p7"]
+bg_color = Color(0.0156863, 0.768627, 0.85098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_6hnvb"]
 font = ExtResource("3_qubjc")
@@ -19,24 +31,12 @@ shadow_size = 10
 shadow_color = Color(0.0156863, 0.768627, 0.85098, 1)
 shadow_offset = Vector2(4, 4)
 
-[sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
-font = ExtResource("4_4mnim")
-font_color = Color(0.0156863, 0.768627, 0.85098, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqutd"]
 bg_color = Color(0, 0.219608, 0.25098, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.0156863, 0.768627, 0.85098, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="LabelSettings" id="LabelSettings_uxvou"]
-font = ExtResource("4_4mnim")
 
 [node name="Battle" type="MarginContainer"]
 anchors_preset = 15
@@ -61,46 +61,31 @@ theme_override_constants/margin_bottom = 64
 
 [node name="Layout" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout"]
-layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-alignment = 1
+theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="MarginContainer/Layout/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Layout"]
+layout_mode = 2
+text = "Attack Encounter"
+label_settings = SubResource("LabelSettings_imjxj")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_426p7")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Layout/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Title" type="Label" parent="MarginContainer/Layout/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "Battle!"
 label_settings = SubResource("LabelSettings_6hnvb")
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/HBoxContainer/Title"]
-modulate = Color(0.0156863, 0.768627, 0.85098, 1)
-show_behind_parent = true
-texture_filter = 4
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-offset_left = -63.0
-offset_top = -13.0
-offset_right = 57.0
-offset_bottom = 107.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_l1kiu")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Level" type="Label" parent="MarginContainer/Layout/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Level 001"
-label_settings = SubResource("LabelSettings_l1kiu")
-horizontal_alignment = 1
-uppercase = true
 
 [node name="TrackContainer" type="MarginContainer" parent="MarginContainer/Layout"]
 custom_minimum_size = Vector2(600, 80)
@@ -115,26 +100,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mqutd")
 
 [node name="ResultRoot" type="Control" parent="MarginContainer/Layout/TrackContainer/Track"]
 unique_name_in_owner = true
+z_index = 100
 anchors_preset = 0
-offset_left = 142.0
-offset_top = -81.0
-offset_right = 182.0
-offset_bottom = -41.0
+offset_left = 280.0
+offset_top = 35.0
+offset_right = 320.0
+offset_bottom = 75.0
 
 [node name="TargetContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 490
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Morale" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-color = Color(0.644639, 0.950853, 0.999522, 1)
 
 [node name="Attack" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
@@ -153,31 +129,31 @@ layout_mode = 2
 offset_right = 1.0
 offset_bottom = 80.0
 size_flags_horizontal = 0
-color = Color(0, 0, 0, 0)
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/TrackContainer/InputContainer/Input"]
 texture_filter = 4
 layout_mode = 0
 offset_left = -19.0
-offset_top = 62.0
+offset_top = 50.0
 offset_right = 21.0
-offset_bottom = 102.0
-texture = ExtResource("5_4mnim")
+offset_bottom = 90.0
+texture = ExtResource("4_v5t24")
 expand_mode = 1
 
-[node name="Instructions" type="Label" parent="MarginContainer/Layout"]
-unique_name_in_owner = true
-visible = false
+[node name="Stats" type="HBoxContainer" parent="MarginContainer/Layout"]
 layout_mode = 2
-text = "[SPACE] or [ENTER] to ACTIVATE"
-label_settings = SubResource("LabelSettings_uxvou")
-horizontal_alignment = 1
 
-[node name="Instructions2" type="Label" parent="MarginContainer/Layout"]
+[node name="AttackValue" type="Label" parent="MarginContainer/Layout/Stats"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-text = "ATTACK/FATIGUE: Target Area Size
-FATIGUE: Speed
-SUCCESS == +Morale"
-label_settings = SubResource("LabelSettings_uxvou")
+size_flags_horizontal = 3
+text = "Attack: 10"
+label_settings = ExtResource("5_imjxj")
+
+[node name="FatigueValue" type="Label" parent="MarginContainer/Layout/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fatigue: 20"
+label_settings = ExtResource("5_imjxj")
+horizontal_alignment = 2

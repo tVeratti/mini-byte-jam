@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://u6018fifyd8o"]
+
+[ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="1_hgv2j"]
+
+[resource]
+font = ExtResource("1_hgv2j")

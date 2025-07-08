@@ -37,10 +37,13 @@ const COLOR_MAP:Dictionary[int, Color] = {
 }
 
 
+@export var rock_meshes:Array[Mesh] = []
+
+
 var type:Types : set = _set_type
 
 
-@onready var mesh_instance_3d = $MeshInstance3D
+@onready var mesh_instance_3d:MeshInstance3D = $MeshInstance3D
 @onready var icon_sprite_3d:Sprite3D = $Icon
 
 
@@ -61,6 +64,9 @@ func _set_type(value:Types) -> void:
 	
 	if COLOR_MAP.has(type):
 		_set_color(COLOR_MAP[type])
+	
+	#if type == Types.IMPASSABLE:
+		#mesh_instance_3d.mesh = rock_meshes.pick_random()
 
 
 func _set_color(value:Color) -> void:

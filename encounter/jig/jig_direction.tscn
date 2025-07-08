@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0u1uysuexi8w"]
 
-[ext_resource type="Texture2D" uid="uid://jpubywynwb7e" path="res://encounter/jig/keyboard_arrow_up.png" id="1_d62ii"]
+[ext_resource type="Texture2D" uid="uid://bmqxbsc1b7tqd" path="res://encounter/jig/keyboard_arrow_up_outline.png" id="1_ltxpw"]
 [ext_resource type="Script" uid="uid://cs7gbj1ut8fp" path="res://encounter/jig/jig_direction.gd" id="1_q7658"]
 
 [node name="JigDirection" type="TextureRect"]
-modulate = Color(0.881937, 0.881937, 0.881936, 1)
+modulate = Color(1, 1, 1, 0.670588)
 custom_minimum_size = Vector2(40, 40)
 offset_right = 80.0
 offset_bottom = 80.0
 pivot_offset = Vector2(40, 40)
-texture = ExtResource("1_d62ii")
+texture = ExtResource("1_ltxpw")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("1_q7658")

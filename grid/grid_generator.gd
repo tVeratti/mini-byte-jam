@@ -62,7 +62,7 @@ func generate_tiles() -> Dictionary[Vector3, Tile.Types]:
 	return tiles
 
 
-func generate_goal_coordinates(center:Vector3) -> Vector3:
+func generate_goal_coordinates(center:Vector3) -> Vector3i:
 	var goal_direction:Vector3 = [
 		Vector3.FORWARD,
 		Vector3.BACK,
@@ -74,7 +74,7 @@ func generate_goal_coordinates(center:Vector3) -> Vector3:
 		(Vector3.BACK + Vector3.LEFT).normalized(),
 	].pick_random()
 	
-	var goal_coordinates:Vector3 = center + (((grid_size / 2.0) - GOAL_MARGIN) * goal_direction)
+	var goal_coordinates:Vector3i = center + (((grid_size / 2.0) - GOAL_MARGIN) * goal_direction)
 	return goal_coordinates
 
 

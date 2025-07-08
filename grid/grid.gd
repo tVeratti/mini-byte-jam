@@ -149,6 +149,7 @@ func _on_radius_scouted(center:Vector3, radius:int, show_goal_direction:bool) ->
 		arrow.texture = scout_decal_texture
 		arrow.global_position = map_to_local(center) + arrow_offset
 		arrow.modulate = Color("#ccffa4")
+		arrow.no_depth_test = true
 		arrow.look_at(map_to_local(goal_tile_coordinates))
 		arrow.rotation_degrees.x = 90.0
 		arrow.rotation_degrees.y += 180

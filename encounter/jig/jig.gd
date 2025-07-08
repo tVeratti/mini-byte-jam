@@ -30,6 +30,8 @@ var within_range:Array[JigDirection] = []
 @onready var result_root:Control = %ResultRoot
 @onready var moves_root = %MovesRoot
 @onready var timer:Timer = %Timer
+@onready var morale_value:Label = %MoraleValue
+@onready var fatigue_value:Label = %FatigueValue
 
 
 func _ready() -> void:
@@ -41,6 +43,13 @@ func _ready() -> void:
 	
 	player.input_component.accept_pressed.connect(_on_input_accept)
 	player.input_component.direction_changed.connect(_on_direction_changed)
+	
+	render_labels()
+
+
+func render_labels() -> void:
+	morale_value.text = "Morale: %s" % player_stats.morale
+	fatigue_value.text = "Fatigue: %s" % player_stats.fatigue
 
 
 func _on_input_accept() -> void:
@@ -85,6 +94,7 @@ func _on_direction_changed(direction:Vector3) ->void:
 		if not has_one_match:
 			# No match found, so it drain fatigue
 			player_stats.increase_fatigue()
+			render_labels()
 		
 	elif not direction.is_zero_approx():
 		_on_input_accept()

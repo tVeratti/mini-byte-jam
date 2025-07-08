@@ -16,13 +16,12 @@ const MOVE_SPEED_MAX:float = 800.0
 @export var result_scene:PackedScene
 
 
-@onready var level:Label = %Level
-@onready var track:Panel = %Track
-@onready var morale:ColorRect = %Morale
 @onready var attack:ColorRect = %Attack
 @onready var input:ColorRect = %Input
 @onready var result_root:Control = %ResultRoot
 @onready var target_container:MarginContainer = %TargetContainer
+@onready var attack_value:Label = %AttackValue
+@onready var fatigue_value:Label = %FatigueValue
 
 
 var battle_level:int = 1
@@ -39,7 +38,14 @@ func _ready() -> void:
 	player.input_component.accept_pressed.connect(_on_input_accept)
 	player.input_component.direction_changed.connect(_on_direction_changed)
 	
+	render_labels()
+	
 	_set_target_sizes()
+
+
+func render_labels() -> void:
+	attack_value.text = "Attack: %s" % player_stats.attack
+	fatigue_value.text = "Fatigue: %s" % player_stats.fatigue
 
 
 func _process(delta: float) -> void:
@@ -57,7 +63,6 @@ func _set_target_sizes() -> void:
 	battle_level = player_stats.fatigue
 	
 	var weighted_level:float = battle_level * LEVEL_WEIGHT
-	level.text = "Fatigue Level %s" % int(battle_level)
 	
 	var attack_percentage:float = float(player_stats.attack) / weighted_level
 	
@@ -103,8 +108,9 @@ func _end_battle() -> void:
 	var result:Results
 	
 	var input_position:int = input.position.x
-	var attack_position_left:int = attack.position.x - (attack.custom_minimum_size.x / 2.0)
-	var attack_position_right:int = attack.position.x + (attack.custom_minimum_size.x / 2.0)
+	var attack_position_left:int = attack.position.x
+	var attack_position_right:int = attack.position.x + attack.custom_minimum_size.x
+	
 	if input_position + NEEDLE_WIDTH >= attack_position_left and input_position - NEEDLE_WIDTH <= attack_position_right:
 		# Within ATTACK range
 		result = Results.SUCCESS
