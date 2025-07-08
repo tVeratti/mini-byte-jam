@@ -143,15 +143,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 color = Color(0.0156863, 0.768627, 0.85098, 1)
 
-[node name="InputContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
-unique_name_in_owner = true
+[node name="InputContainer" type="Control" parent="MarginContainer/Layout/TrackContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 0
 
 [node name="Input" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/InputContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
+offset_right = 1.0
+offset_bottom = 80.0
 size_flags_horizontal = 0
 color = Color(0, 0, 0, 0)
 

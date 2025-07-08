@@ -16,8 +16,8 @@ const FATIGUE_REDUCTION_MULTIPLIER:float = 0.5
 
 
 var fatigue:int = 1
-var attack:int = 1
-var morale:int = 1
+var attack:int = 5
+var morale:int = 5
 
 var health_max:int = MAX_HEALTH
 var health_current:int = MAX_HEALTH
