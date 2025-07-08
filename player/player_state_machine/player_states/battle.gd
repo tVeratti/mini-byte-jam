@@ -13,7 +13,7 @@ func exit() -> void:
 	grid.encounter_ended.disconnect(_on_encounter_ended)
 
 
-func _on_encounter_ended(result:Battle.Results, type:Encounter.Types) -> void:
+func _on_encounter_ended(type:Encounter.Types, result:Battle.Results) -> void:
 	match(result):
 		Encounter.Results.SUCCESS:
 			if player.player_stats.morale > player.player_stats.attack:

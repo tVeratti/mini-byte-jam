@@ -35,6 +35,7 @@ const ICON_BUFF_MORALE_UID:String = "uid://cs6mjv22njc1d"
 const ICON_HEAL_UID:String = "uid://cmatcvxlnlqyf"
 const ICON_SCOUT_UID:String = "uid://cyaddnhljuwx2"
 const ICON_FATIGUE_UID:String = "uid://cmatcvxlnlqyf"
+const ICON_JIG_UID:String = "uid://bfj3cwx5kspn8"
 
 
 const ICON_MAP:Dictionary[int, Texture] = {
@@ -43,7 +44,8 @@ const ICON_MAP:Dictionary[int, Texture] = {
 	Tile.Types.BUFF_MORALE: preload(ICON_BUFF_MORALE_UID),
 	Tile.Types.HEAL: preload(ICON_HEAL_UID),
 	Tile.Types.SCOUT: preload(ICON_SCOUT_UID),
-	Tile.Types.FATIGUE_REDUCTION: preload(ICON_FATIGUE_UID)
+	Tile.Types.FATIGUE_REDUCTION: preload(ICON_FATIGUE_UID),
+	Tile.Types.JIG: preload(ICON_JIG_UID)
 }
 
 

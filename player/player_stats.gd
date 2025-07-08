@@ -6,17 +6,21 @@ signal stats_changed
 signal health_zero
 
 
-const DEFAULT_HEALTH_MAX:int = 5
+const MAX_HEALTH:int = 5
 const MAX_FATIGUE:int = 100
+const MAX_ATTACK:int = 100
+const MAX_MORALE:int = 100
+
+
 const FATIGUE_REDUCTION_MULTIPLIER:float = 0.5
 
 
 var fatigue:int = 1
 var attack:int = 1
-var morale:int = 1
+var morale:int = MAX_MORALE / 2
 
-var health_max:int = DEFAULT_HEALTH_MAX
-var health_current:int = DEFAULT_HEALTH_MAX
+var health_max:int = MAX_HEALTH
+var health_current:int = MAX_HEALTH
 
 
 var notifications:PlayerNotifications
@@ -43,13 +47,13 @@ func heal(amount:int) -> void:
 
 
 func buff_attack(amount:int) -> void:
-	attack += amount
+	attack = min(attack + amount, MAX_ATTACK)
 	stats_changed.emit()
 	notifications.render("+%s Attack" % amount)
 
 
 func buff_morale(amount:int) -> void:
-	morale += amount
+	morale = min(morale + amount, MAX_MORALE)
 	stats_changed.emit()
 	notifications.render("+%s Morale" % amount)
 

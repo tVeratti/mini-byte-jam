@@ -23,6 +23,7 @@ const MOVE_SPEED_MAX:float = 700.0
 @onready var input_container:MarginContainer = %InputContainer
 @onready var input:ColorRect = %Input
 @onready var result_root:Control = %ResultRoot
+@onready var instructions = %Instructions
 
 
 var battle_level:int = 1
@@ -60,8 +61,8 @@ func _set_target_sizes() -> void:
 	var weighted_level:float = battle_level * LEVEL_WEIGHT
 	level.text = "Fatigue Level %s" % int(battle_level)
 	
-	var attack_percentage:float = float(player_stats.attack) / weighted_level
-	var morale_percentage:float = float(player_stats.morale) / weighted_level
+	var attack_percentage:float = float(player_stats.attack) / PlayerStats.MAX_ATTACK
+	var morale_percentage:float = float(player_stats.morale) / PlayerStats.MAX_MORALE
 	
 	var attack_width:int = clamp(
 		TRACK_WIDTH * attack_percentage,
