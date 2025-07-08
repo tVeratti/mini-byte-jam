@@ -81,4 +81,4 @@ text = "IDLE"
 
 [node name="Boat" parent="." instance=ExtResource("13_yllr7")]
 unique_name_in_owner = true
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -0.490935)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

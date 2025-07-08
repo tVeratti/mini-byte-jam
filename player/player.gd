@@ -6,6 +6,12 @@ signal direction_intent_changed(direction:Vector3)
 signal coordinates_changed(coordinates:Vector3)
 
 
+const MESH_TURN_SPEED:float = 10.0
+
+
+var previous_mesh_lookat:Vector3
+
+
 @onready var input_component:InputComponent = $InputComponent
 @onready var player_stats:PlayerStats = $PlayerStats
 @onready var player_state_machine:PlayerStateMachine = %PlayerStateMachine
@@ -50,3 +56,15 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 			player_stats.reduce_fatigue(0.1)
 	
 	grid.tile_entered.emit(coordinates)
+
+
+func mesh_look(origin:Vector3, delta:float) -> void:
+	if not is_instance_valid(boat): return
+	
+	var direction = global_transform.origin.direction_to(origin) * -2.0
+	var lookat = global_transform.origin + Vector3(direction.x, 5.0, direction.z)
+	var look_offset = (lookat - previous_mesh_lookat) * MESH_TURN_SPEED * delta
+	
+	previous_mesh_lookat += look_offset
+	boat.look_at(previous_mesh_lookat, Vector3.UP)
+	boat.rotation.x = 0.0

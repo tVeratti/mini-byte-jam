@@ -9,15 +9,14 @@ extends PlayerState
 
 
 var queued_next_intent:Vector3
-
+var target_position:Vector3
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	# Listen to direction changes to queue up the next move intent
 	queued_next_intent = Vector3.ZERO
 	player.input_component.direction_changed.connect(_on_direction_changed)
 	
-	var target_position:Vector3 = player.player_direction_intent.global_position
-	player.boat.look_at(Vector3.UP, target_position)
+	target_position = player.player_direction_intent.global_position - Vector3(0, 0.5, 0)
 	#player.boat.rotation.x = 0.0
 	#player.boat.rotation.z = 0.0
 	
@@ -27,6 +26,11 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	tween.tween_property(player, "global_position", target_position, 0.5)
 	tween.tween_callback(_goto_next_state)
 	AudioManager.play_audio.emit(move_audio.pick_random())
+
+
+func update(delta:float) -> void:
+	var direction: = player.global_position.direction_to(target_position)
+	player.mesh_look(player.global_position + direction, delta)
 
 
 func _goto_next_state() -> void:
