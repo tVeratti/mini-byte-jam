@@ -29,35 +29,17 @@ const TILE_IDS:Dictionary[int, Tile.Types] = {
 	9: Tile.Types.JIG
 }
 
-const ICON_BATTLE_UID:String = "uid://dae03ox6o0lxn"
-const ICON_BUFF_ATTACK_UID:String = "uid://cdtuar3vyptkk"
-const ICON_BUFF_MORALE_UID:String = "uid://cs6mjv22njc1d"
-const ICON_HEAL_UID:String = "uid://cmatcvxlnlqyf"
-const ICON_SCOUT_UID:String = "uid://cyaddnhljuwx2"
-const ICON_FATIGUE_UID:String = "uid://gvrnvcj61ihu"
-const ICON_JIG_UID:String = "uid://bfj3cwx5kspn8"
+const REVEAL_DELAY:float = 0.01
 
 
-const ICON_MAP:Dictionary[int, Texture] = {
-	Tile.Types.BATTLE: preload(ICON_BATTLE_UID),
-	Tile.Types.BUFF_ATTACK: preload(ICON_BUFF_ATTACK_UID),
-	Tile.Types.BUFF_MORALE: preload(ICON_BUFF_MORALE_UID),
-	Tile.Types.HEAL: preload(ICON_HEAL_UID),
-	Tile.Types.SCOUT: preload(ICON_SCOUT_UID),
-	Tile.Types.FATIGUE_REDUCTION: preload(ICON_FATIGUE_UID),
-	Tile.Types.JIG: preload(ICON_JIG_UID)
-}
-
-
+@export var tile_scene:PackedScene
 @export var scout_decal_texture:Texture
-@export var tile_icon_scene:PackedScene
 
 @export_tool_button("Generate Tiles")
 var button:Callable = generate_tiles
 
 
 var tiles:Dictionary[Vector3, Tile.Types] = {}
-var icons:Dictionary[Vector3, Sprite3D] ={}
 var goal_tile_coordinates:Vector3
 
 
@@ -78,9 +60,17 @@ func generate_tiles() -> void:
 	var center:int = grid_generator.grid_size / 2.0
 	var center_coord: = Vector3(center, 0, center)
 	goal_tile_coordinates = grid_generator.generate_goal_coordinates(center_coord)
-	tiles[goal_tile_coordinates] = Tile.Types.GOAL
 	
+	# Make goal adjacent tiles as encounter types
+	var goal_adjacent = [Vector3.RIGHT, Vector3.FORWARD, Vector3.LEFT, Vector3.BACK]
+	for adj in goal_adjacent:
+		tiles[goal_tile_coordinates + adj] = grid_generator.get_type_from_group(GridGenerator.TileGroups.ENCOUNTER)
+	
+	# Check that there is a valid path to the goal
 	tiles = grid_generator.check_goal_path(center_coord, goal_tile_coordinates, tiles)
+	
+	# Set the goal tile value
+	tiles[goal_tile_coordinates] = Tile.Types.GOAL
 	
 	if Engine.is_editor_hint():
 		for coord in tiles.keys():
@@ -91,6 +81,8 @@ func generate_tiles() -> void:
 func show_tiles(center:Vector3, radius:int) -> void:
 	# Add minimum range to compensate for current tile/half range
 	radius += 2
+	
+	var revealed_tiles:Array = []
 	
 	for i in range(radius):
 		var x: = i - int(radius / 2.0)
@@ -104,23 +96,27 @@ func show_tiles(center:Vector3, radius:int) -> void:
 				var coordinates:Vector3 = center + direction
 				if tiles.has(coordinates):
 					var tile_type:Tile.Types = tiles[coordinates]
-					var tile_id:int = TILE_IDS[tile_type]
+					var node_name:String = var_to_str(coordinates)
 					
-					set_cell_item(coordinates, tile_id)
-					
-					# Add tile icon
-					if ICON_MAP.has(tile_type) and not icons.has(coordinates):
-						var icon_node:Sprite3D = tile_icon_scene.instantiate()
-						icon_node.texture = ICON_MAP[tile_type]
-						add_child(icon_node)
-						icon_node.global_position = map_to_local(coordinates)
-						icon_node.global_position.y = 1.01
-						
-						# Set the color of the icon
-						var albedo = mesh_library.get_item_mesh(tile_type).surface_get_material(0).albedo_color
-						icon_node.modulate = albedo.lightened(0.2)
-						
-						icons[coordinates] = icon_node
+					if not has_node(node_name):
+						var tile:Tile = tile_scene.instantiate() 
+						tile.name = node_name
+						add_child(tile)
+						tile.global_position = map_to_local(coordinates) - Vector3(0, 1, 0)
+						tile.type = tile_type
+						revealed_tiles.append([abs(x) + abs(y), tile])
+	
+	# Sort the tiles by distance so they animate reveal in that order
+	revealed_tiles.sort_custom(func(a, b):
+		return a[0] < b[0])
+	
+	for tile in revealed_tiles:
+		var distance:float = tile[0]
+		var tile_node:Tile = tile[1]
+		
+		var delay:float = REVEAL_DELAY * distance
+		await get_tree().create_timer(delay).timeout
+		tile_node.animate_in()
 
 
 func _on_tile_entered(coordinates:Vector3) -> void:
@@ -135,15 +131,9 @@ func _on_tile_entered(coordinates:Vector3) -> void:
 	
 	radius_scouted.emit(coordinates, 1, false)
 	
-	# Remove icon
-	if icons.has(coordinates):
-		var icon:Sprite3D = icons[coordinates]
-		icon.queue_free()
-		icons.erase(coordinates)
-	
 	# Set the current location to `VISITED` so it doesn't trigger again later
-	var visited_id: = TILE_IDS[Tile.Types.VISITED]
-	set_cell_item(coordinates, visited_id)
+	var tile:Tile = get_node(var_to_str(coordinates))
+	tile.type = Tile.Types.VISITED
 	tiles[coordinates] = Tile.Types.VISITED
 
 

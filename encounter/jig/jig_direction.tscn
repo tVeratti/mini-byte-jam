@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0u1uysuexi8w"]
 
-[ext_resource type="Texture2D" uid="uid://jpubywynwb7e" path="res://encounters/jig/keyboard_arrow_up.png" id="1_d62ii"]
-[ext_resource type="Script" uid="uid://cs7gbj1ut8fp" path="res://encounters/jig/jig_direction.gd" id="1_q7658"]
+[ext_resource type="Texture2D" uid="uid://jpubywynwb7e" path="res://encounter/jig/keyboard_arrow_up.png" id="1_d62ii"]
+[ext_resource type="Script" uid="uid://cs7gbj1ut8fp" path="res://encounter/jig/jig_direction.gd" id="1_q7658"]
 
 [node name="JigDirection" type="TextureRect"]
 modulate = Color(0.881937, 0.881937, 0.881936, 1)

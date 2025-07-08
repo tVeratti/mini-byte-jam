@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0dwk7j8uulrj"]
+[gd_scene load_steps=13 format=3 uid="uid://b0dwk7j8uulrj"]
 
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="1_albhm"]
 [ext_resource type="Script" uid="uid://bxvoa6jfwni54" path="res://map/player_stats_hud/player_stats_hud.gd" id="1_p5avf"]
@@ -9,9 +9,6 @@
 
 [sub_resource type="Theme" id="Theme_aejf3"]
 default_font = ExtResource("1_albhm")
-
-[sub_resource type="LabelSettings" id="LabelSettings_jbggd"]
-font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbggd"]
 bg_color = Color(1, 1, 1, 1)
@@ -53,14 +50,6 @@ texture = ExtResource("5_yat35")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Health" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Health"
-label_settings = SubResource("LabelSettings_jbggd")
-horizontal_alignment = 1
-
 [node name="HealthProgress" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 20)
@@ -79,14 +68,6 @@ size_flags_vertical = 4
 texture = ExtResource("6_7q2d7")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="Attack" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Attack"
-label_settings = SubResource("LabelSettings_jbggd")
-horizontal_alignment = 1
 
 [node name="AttackProgress" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -107,14 +88,6 @@ texture = ExtResource("4_yg1bh")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Morale" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Morale"
-label_settings = SubResource("LabelSettings_jbggd")
-horizontal_alignment = 1
-
 [node name="MoraleProgress" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
@@ -127,6 +100,7 @@ value = 0.6
 show_percentage = false
 
 [node name="FatigueIcon" type="TextureRect" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -134,16 +108,9 @@ texture = ExtResource("6_jbggd")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Fatigue" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Fatigue"
-label_settings = SubResource("LabelSettings_jbggd")
-horizontal_alignment = 1
-
 [node name="FatigueProgress" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 4

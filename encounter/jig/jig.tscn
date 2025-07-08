@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://c43iodsc02gpc"]
 
-[ext_resource type="Script" uid="uid://ksaedy85vutt" path="res://encounters/jig/jig.gd" id="1_mxy8j"]
-[ext_resource type="PackedScene" uid="uid://d0u1uysuexi8w" path="res://encounters/jig/jig_direction.tscn" id="2_q6ne0"]
-[ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounters/battle/battle_result.tscn" id="3_s6ojh"]
+[ext_resource type="Script" uid="uid://ksaedy85vutt" path="res://encounter/jig/jig.gd" id="1_mxy8j"]
+[ext_resource type="PackedScene" uid="uid://d0u1uysuexi8w" path="res://encounter/jig/jig_direction.tscn" id="2_q6ne0"]
+[ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="3_s6ojh"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_scq0y"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="5_h2mwq"]
 [ext_resource type="Texture2D" uid="uid://jadm4msu5o3p" path="res://grid/tile/assets/arrow.png" id="6_q6ne0"]

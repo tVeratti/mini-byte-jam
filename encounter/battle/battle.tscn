@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcvlm28nt0iwi"]
 
-[ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://encounters/battle/battle.gd" id="1_mqutd"]
-[ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounters/battle/battle_result.tscn" id="2_tiqy5"]
+[ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://encounter/battle/battle.gd" id="1_mqutd"]
+[ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="2_tiqy5"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_qubjc"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="4_4mnim"]
 [ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="4_l1kiu"]

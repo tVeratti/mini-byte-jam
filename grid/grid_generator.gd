@@ -92,10 +92,14 @@ func check_goal_path(center_coord:Vector3, goal_coord:Vector3, tiles:Dictionary)
 	return tiles
 
 
+func get_type_from_group(group:TileGroups) -> Tile.Types:
+	return TILE_GROUP_MAP[group].pick_random()
+
+
 func _get_type_from_noise(noise_value:float, sorted_thresholds:Array) -> Tile.Types:
 	for threshold in sorted_thresholds:
 		if noise_value <= threshold:
 			var group:TileGroups = NOISE_THRESHOLDS[threshold]
-			return TILE_GROUP_MAP[group].pick_random()
+			return get_type_from_group(group)
 	
 	return Tile.Types.VISITED
