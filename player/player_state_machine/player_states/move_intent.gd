@@ -30,7 +30,9 @@ func exit() -> void:
 
 
 func _on_direction_changed(direction:Vector3) -> void:
-	if not direction.is_zero_approx() and VALID_DIRECTIONS.has(direction):
+	if not direction_intent.is_zero_approx() and direction.is_zero_approx():
+		_on_accepted()
+	elif VALID_DIRECTIONS.has(direction):
 		direction_intent = direction
 		player.direction_intent_changed.emit(direction_intent)
 

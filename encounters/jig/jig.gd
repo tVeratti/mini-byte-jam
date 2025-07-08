@@ -7,6 +7,7 @@ const LEVEL_WEIGHT:float = 10.0
 const TRACK_WIDTH:int = 600
 const MIN_MOVES:int = 4
 const MAX_MOVES:int = 12
+const TIMER_SPEED:float = 1.0
 
 
 @export var jig_direction_scene:PackedScene
@@ -47,10 +48,16 @@ func _on_input_accept() -> void:
 	
 	if not has_started:
 		has_started = true
+		_add_direction_jig_node()
 		timer.start()
 
 
 func _add_direction_jig_node() -> void:
+	var morale_fatigue_percentage:float = float(player_stats.morale) / float(player_stats.fatigue)
+	timer.wait_time = clamp(morale_fatigue_percentage * TIMER_SPEED, 0.1, TIMER_SPEED)
+	
+	move_count += 1
+	
 	var jig_node:JigDirection = jig_direction_scene.instantiate()
 	jig_node.enter_range.connect(_on_jig_enter_range)
 	jig_node.exit_range.connect(_on_jig_exit_range)
@@ -78,6 +85,9 @@ func _on_direction_changed(direction:Vector3) ->void:
 		if not has_one_match:
 			# No match found, so it drain fatigue
 			player_stats.increase_fatigue()
+		
+	elif not direction.is_zero_approx():
+		_on_input_accept()
 
 
 func _end_jig(result:Encounter.Results) -> void:
@@ -101,7 +111,6 @@ func _on_timer_timeout():
 	if move_count >= max_moves:
 		return
 	
-	move_count += 1
 	_add_direction_jig_node()
 
 

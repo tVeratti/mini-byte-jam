@@ -141,6 +141,7 @@ offset_bottom = 40.0
 
 [node name="Instructions" type="Label" parent="MarginContainer/Layout"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "[SPACE] or [ENTER] to START"
 label_settings = SubResource("LabelSettings_s6ojh")

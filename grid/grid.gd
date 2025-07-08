@@ -34,7 +34,7 @@ const ICON_BUFF_ATTACK_UID:String = "uid://cdtuar3vyptkk"
 const ICON_BUFF_MORALE_UID:String = "uid://cs6mjv22njc1d"
 const ICON_HEAL_UID:String = "uid://cmatcvxlnlqyf"
 const ICON_SCOUT_UID:String = "uid://cyaddnhljuwx2"
-const ICON_FATIGUE_UID:String = "uid://cmatcvxlnlqyf"
+const ICON_FATIGUE_UID:String = "uid://gvrnvcj61ihu"
 const ICON_JIG_UID:String = "uid://bfj3cwx5kspn8"
 
 

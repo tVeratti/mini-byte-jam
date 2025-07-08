@@ -9,8 +9,8 @@ const NEEDLE_WIDTH:int = 2
 const MIN_TARGET_WIDTH:int = 5
 const MIN_TARGET_OFFSET:int = 80
 
-const MOVE_SPEED_MIN:float = 100.0
-const MOVE_SPEED_MAX:float = 700.0
+const MOVE_SPEED_MIN:float = 200.0
+const MOVE_SPEED_MAX:float = 800.0
 
 
 @export var result_scene:PackedScene
@@ -38,6 +38,7 @@ func _ready() -> void:
 	player_stats = player.player_stats
 	
 	player.input_component.accept_pressed.connect(_on_input_accept)
+	player.input_component.direction_changed.connect(_on_direction_changed)
 	
 	_set_target_sizes()
 
@@ -82,6 +83,11 @@ func _reset() -> void:
 	input_container.add_theme_constant_override("margin_left", 0)
 
 
+func _on_direction_changed(dir:Vector3) -> void:
+	if not dir.is_zero_approx():
+		_on_input_accept()
+
+
 func _on_input_accept() -> void:
 	if freeze_input: return
 	
@@ -100,7 +106,9 @@ func _end_battle() -> void:
 	var result:Results
 	
 	var input_position:int = input.position.x
-	if input_position + NEEDLE_WIDTH > attack.position.x and input_position - NEEDLE_WIDTH < attack.position.x + attack.custom_minimum_size.x:
+	var attack_position_left:int = attack.position.x - (attack.custom_minimum_size.x / 2.0)
+	var attack_position_right:int = attack.position.x + (attack.custom_minimum_size.x / 2.0)
+	if input_position + NEEDLE_WIDTH >= attack_position_left and input_position - NEEDLE_WIDTH <= attack_position_right:
 		# Within ATTACK range
 		result = Results.SUCCESS
 		

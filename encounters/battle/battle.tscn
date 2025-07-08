@@ -150,7 +150,7 @@ theme_override_constants/margin_left = 0
 
 [node name="Input" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/InputContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(5, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 color = Color(0, 0, 0, 0)
@@ -158,15 +158,16 @@ color = Color(0, 0, 0, 0)
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/TrackContainer/InputContainer/Input"]
 texture_filter = 4
 layout_mode = 0
-offset_left = -18.0
+offset_left = -19.0
 offset_top = 62.0
-offset_right = 22.0
+offset_right = 21.0
 offset_bottom = 102.0
 texture = ExtResource("5_4mnim")
 expand_mode = 1
 
 [node name="Instructions" type="Label" parent="MarginContainer/Layout"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "[SPACE] or [ENTER] to ACTIVATE"
 label_settings = SubResource("LabelSettings_uxvou")

@@ -19,10 +19,10 @@ func render() -> void:
 	
 	var fatigue_value:float = stats.fatigue
 	
-	health.value = stats.health_current / stats.health_max
-	morale.value = stats.morale / float(PlayerStats.MAX_MORALE)
-	attack.value = stats.attack / float(PlayerStats.MAX_ATTACK)
-	fatigue.value = fatigue_value / float(PlayerStats.MAX_FATIGUE)
+	health.value = float(stats.health_current) / float(stats.health_max)
+	morale.value = stats.morale / fatigue_value
+	attack.value = stats.attack / fatigue_value
+	fatigue.value = fatigue_value / PlayerStats.MAX_FATIGUE
 
 
 func _on_stats_changed() -> void:

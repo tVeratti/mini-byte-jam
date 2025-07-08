@@ -17,7 +17,7 @@ const FATIGUE_REDUCTION_MULTIPLIER:float = 0.5
 
 var fatigue:int = 1
 var attack:int = 1
-var morale:int = MAX_MORALE / 2
+var morale:int = 1
 
 var health_max:int = MAX_HEALTH
 var health_current:int = MAX_HEALTH
@@ -63,8 +63,8 @@ func increase_fatigue() -> void:
 	stats_changed.emit()
 
 
-func reduce_fatigue() -> void:
-	var amount:int = ceil(fatigue * FATIGUE_REDUCTION_MULTIPLIER)
+func reduce_fatigue(percentage:float = FATIGUE_REDUCTION_MULTIPLIER) -> void:
+	var amount:int = ceil(fatigue * percentage)
 	fatigue = max(fatigue - amount, 0)
 	stats_changed.emit()
 	notifications.render("-%s Fatigue" % amount)

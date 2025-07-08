@@ -3,24 +3,25 @@ class_name GridGenerator
 extends Node
 
 
-enum TileGroups { BUFF, UTILITY, ENCOUNTER, BLOCK, EMPTY }
+enum TileGroups { BUFF, UTILITY, ENCOUNTER, BLOCK, EMPTY, RARE }
 
 const GOAL_MARGIN:float = 2
 const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
-	0.50: TileGroups.BLOCK,
+	0.40: TileGroups.BLOCK,
+	0.44: TileGroups.RARE,
 	0.60: TileGroups.EMPTY,
-	0.80: TileGroups.BUFF,
+	0.85: TileGroups.BUFF,
 	0.92: TileGroups.ENCOUNTER,
 	1.00: TileGroups.UTILITY
 }
 const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {
+	TileGroups.RARE: [Tile.Types.FATIGUE_REDUCTION, Tile.Types.HEAL],
 	TileGroups.BLOCK: [Tile.Types.IMPASSABLE],
 	TileGroups.BUFF: [
 		Tile.Types.BUFF_ATTACK,
 		Tile.Types.BUFF_MORALE],
-		#Tile.Types.FATIGUE_REDUCTION],
 	TileGroups.ENCOUNTER: [Tile.Types.BATTLE, Tile.Types.JIG],
-	TileGroups.UTILITY: [Tile.Types.HEAL, Tile.Types.SCOUT],
+	TileGroups.UTILITY: [Tile.Types.SCOUT],
 	TileGroups.EMPTY: [Tile.Types.VISITED]
 }
 

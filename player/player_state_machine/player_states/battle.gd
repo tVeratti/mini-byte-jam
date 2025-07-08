@@ -18,9 +18,9 @@ func _on_encounter_ended(type:Encounter.Types, result:Battle.Results) -> void:
 		Encounter.Results.SUCCESS:
 			match(type):
 				Encounter.Types.BATTLE:
-					player.player_stats.buff_morale(2)
-				Encounter.Types.JIG:
 					player.player_stats.buff_attack(2)
+				Encounter.Types.JIG:
+					player.player_stats.buff_morale(2)
 		
 		Encounter.Results.FAIL:
 			player.player_stats.take_damage(1)

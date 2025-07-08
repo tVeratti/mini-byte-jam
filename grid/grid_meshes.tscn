@@ -18,7 +18,7 @@ albedo_color = Color(0.0196078, 0.65098, 0.588235, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_prbok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1fj5"]
-albedo_color = Color(0.00784314, 0.65098, 0.462745, 1)
+albedo_color = Color(0.0156863, 0.85098, 0.85098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_66i1r"]
 
