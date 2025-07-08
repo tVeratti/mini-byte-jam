@@ -20,10 +20,10 @@ const MOVE_SPEED_MAX:float = 700.0
 @onready var track:Panel = %Track
 @onready var morale:ColorRect = %Morale
 @onready var attack:ColorRect = %Attack
-@onready var input_container:MarginContainer = %InputContainer
 @onready var input:ColorRect = %Input
 @onready var result_root:Control = %ResultRoot
-@onready var instructions = %Instructions
+@onready var input_container:MarginContainer = %InputContainer
+@onready var target_container:MarginContainer = %TargetContainer
 
 
 var battle_level:int = 1
@@ -61,27 +61,20 @@ func _set_target_sizes() -> void:
 	var weighted_level:float = battle_level * LEVEL_WEIGHT
 	level.text = "Fatigue Level %s" % int(battle_level)
 	
-	var attack_percentage:float = float(player_stats.attack) / PlayerStats.MAX_ATTACK
-	var morale_percentage:float = float(player_stats.morale) / PlayerStats.MAX_MORALE
+	var attack_percentage:float = float(player_stats.attack) / weighted_level
 	
 	var attack_width:int = clamp(
 		TRACK_WIDTH * attack_percentage,
 		MIN_TARGET_WIDTH,
 		TRACK_WIDTH - MIN_TARGET_OFFSET)
 	
-	var morale_width:int = clamp(
-		(TRACK_WIDTH * morale_percentage) + attack_width,
-		MIN_TARGET_WIDTH,
-		TRACK_WIDTH - MIN_TARGET_OFFSET)
-	
 	attack.custom_minimum_size.x = attack_width
-	morale.custom_minimum_size.x = morale_width
 	
 	var random_offset:int = randi_range(
 		MIN_TARGET_OFFSET,
-		TRACK_WIDTH - max(attack_width, morale_width))
+		TRACK_WIDTH - attack_width - 10)
 	
-	track.add_theme_constant_override("margin_left", random_offset)
+	target_container.add_theme_constant_override("margin_left", random_offset)
 
 
 func _reset() -> void:
@@ -110,11 +103,6 @@ func _end_battle() -> void:
 	if input_position + NEEDLE_WIDTH > attack.position.x and input_position - NEEDLE_WIDTH < attack.position.x + attack.custom_minimum_size.x:
 		# Within ATTACK range
 		result = Results.SUCCESS
-	
-	elif input_position + NEEDLE_WIDTH > morale.position.x and input_position - NEEDLE_WIDTH < morale.position.x + morale.custom_minimum_size.x:
-		# Within MORALE range
-		result = Results.RETRY
-		player_stats.increase_fatigue()
 		
 	else:
 		# FAIL
@@ -127,13 +115,4 @@ func _end_battle() -> void:
 	# Leave it up for a second so the player can see where it stopped
 	await get_tree().create_timer(1.0).timeout
 	ended.emit(result)
-	
-	if result == Results.RETRY:
-		_set_target_sizes()
-		freeze_input = false
-		_reset()
-	
-	elif [Results.SUCCESS, Results.FAIL].has(result):
-		var player:Player = get_tree().get_first_node_in_group("player")
-		player.input_component.accept_pressed.disconnect(_on_input_accept)
-		queue_free()
+	queue_free()

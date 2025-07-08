@@ -16,10 +16,11 @@ func exit() -> void:
 func _on_encounter_ended(type:Encounter.Types, result:Battle.Results) -> void:
 	match(result):
 		Encounter.Results.SUCCESS:
-			if player.player_stats.morale > player.player_stats.attack:
-				player.player_stats.buff_attack(2)
-			else:
-				player.player_stats.buff_morale(2)
+			match(type):
+				Encounter.Types.BATTLE:
+					player.player_stats.buff_morale(2)
+				Encounter.Types.JIG:
+					player.player_stats.buff_attack(2)
 		
 		Encounter.Results.FAIL:
 			player.player_stats.take_damage(1)

@@ -24,7 +24,7 @@ font = ExtResource("4_4mnim")
 font_color = Color(0.0156863, 0.768627, 0.85098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqutd"]
-bg_color = Color(0, 0, 0, 0.313726)
+bg_color = Color(0, 0.219608, 0.25098, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -122,13 +122,15 @@ offset_right = 182.0
 offset_bottom = -41.0
 
 [node name="TargetContainer" type="MarginContainer" parent="MarginContainer/Layout/TrackContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/margin_left = 80
+theme_override_constants/margin_left = 490
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="Morale" type="ColorRect" parent="MarginContainer/Layout/TrackContainer/TargetContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -169,3 +171,12 @@ layout_mode = 2
 text = "[SPACE] or [ENTER] to ACTIVATE"
 label_settings = SubResource("LabelSettings_uxvou")
 horizontal_alignment = 1
+
+[node name="Instructions2" type="Label" parent="MarginContainer/Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "ATTACK/FATIGUE: Target Area Size
+FATIGUE: Speed
+SUCCESS == +Morale"
+label_settings = SubResource("LabelSettings_uxvou")

@@ -15,9 +15,9 @@ bg_color = Color(0, 0, 0, 0.541176)
 font = ExtResource("3_scq0y")
 font_size = 80
 outline_size = 10
-outline_color = Color(0.0196078, 0.65098, 0.588235, 1)
+outline_color = Color(0.0156863, 0.768627, 0.85098, 1)
 shadow_size = 10
-shadow_color = Color(0.0196078, 0.65098, 0.588235, 1)
+shadow_color = Color(0.0156863, 0.768627, 0.85098, 1)
 shadow_offset = Vector2(4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l1kiu"]
@@ -25,12 +25,12 @@ font = ExtResource("5_h2mwq")
 font_color = Color(0.0196078, 0.65098, 0.588235, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwdto"]
-bg_color = Color(0, 0, 0, 0.313726)
+bg_color = Color(0, 0.219608, 0.25098, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 40
 border_width_bottom = 4
-border_color = Color(0.0196078, 0.65098, 0.588235, 1)
+border_color = Color(0.0156863, 0.768627, 0.85098, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -65,12 +65,12 @@ offset_bottom = 220.0
 
 [node name="InputArrow" type="TextureRect" parent="Panel"]
 unique_name_in_owner = true
-modulate = Color(0.0196078, 0.65098, 0.588235, 1)
+modulate = Color(0.0156863, 0.768627, 0.85098, 1)
 layout_mode = 2
 offset_left = 821.0
-offset_top = 236.0
+offset_top = 237.0
 offset_right = 851.0
-offset_bottom = 266.0
+offset_bottom = 267.0
 texture = ExtResource("6_q6ne0")
 expand_mode = 1
 flip_v = true
@@ -101,7 +101,7 @@ label_settings = SubResource("LabelSettings_6hnvb")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Layout/Header/Title"]
-modulate = Color(0.0196078, 0.65098, 0.588235, 1)
+modulate = Color(0.0156863, 0.768627, 0.85098, 1)
 show_behind_parent = true
 layout_mode = 0
 offset_left = -95.0
