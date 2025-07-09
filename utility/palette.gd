@@ -14,6 +14,5 @@ const BLUE_02: = Color("#00a2d6")
 const BLUE_03: = Color("#04c4d9")
 const BLUE_04: = Color("#04d9d9")
 
-
 const YELLOW_01: = Color("#deff85")
 const YELLOW_02: = Color("#ffe368")

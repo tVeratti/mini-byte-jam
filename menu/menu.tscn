@@ -1,16 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc02vevc3mc8q"]
+[gd_scene load_steps=15 format=3 uid="uid://cc02vevc3mc8q"]
 
 [ext_resource type="Script" uid="uid://dsbf2who6sb23" path="res://menu/menu.gd" id="1_j0t7f"]
 [ext_resource type="LabelSettings" uid="uid://bfqctg5xliu8o" path="res://assets/title_label_settings.tres" id="2_043lm"]
+[ext_resource type="Texture2D" uid="uid://b2gx50rhqscbg" path="res://menu/Tx_Flag.png" id="2_iesyu"]
 [ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="3_043lm"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="3_pbjm4"]
 [ext_resource type="Texture2D" uid="uid://cs6mjv22njc1d" path="res://grid/tile/assets/fatigue.png" id="4_iesyu"]
 [ext_resource type="StyleBox" uid="uid://cotr02bcpjcqi" path="res://menu/button_style.tres" id="4_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://cdtuar3vyptkk" path="res://grid/tile/assets/attack.png" id="5_dmxns"]
 [ext_resource type="Texture2D" uid="uid://cyaddnhljuwx2" path="res://grid/tile/assets/scout.png" id="5_iuxab"]
 [ext_resource type="StyleBox" uid="uid://sg6leeg6q7i" path="res://menu/button_style_pressed.tres" id="5_juveg"]
 [ext_resource type="StyleBox" uid="uid://bm0ompjupe7go" path="res://menu/button_style_hover.tres" id="5_svuvw"]
+[ext_resource type="Texture2D" uid="uid://bfj3cwx5kspn8" path="res://grid/tile/assets/jig.png" id="6_3vbpa"]
 [ext_resource type="Texture2D" uid="uid://cmatcvxlnlqyf" path="res://grid/tile/assets/morale.png" id="6_dmxns"]
-[ext_resource type="Texture2D" uid="uid://dbcuibms4nr5j" path="res://grid/tile/assets/heal.png" id="7_3vbpa"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_iesyu"]
+color = Color(0, 0.219608, 0.25098, 1)
+thickness = 2
+vertical = true
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_j0t7f")
@@ -24,48 +31,104 @@ grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Content"]
 layout_mode = 2
-color = Color(0.00784314, 0.317647, 0.34902, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+[node name="MarginContainer" type="MarginContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Content/MarginContainer"]
+layout_mode = 2
+
+[node name="Icons" type="VBoxContainer" parent="Content/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 16
+
+[node name="TextureRect3" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0.870588, 1, 0.521569, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("5_iuxab")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0.00784314, 0.65098, 0.462745, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("6_dmxns")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0, 0.45098, 0.411765, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_iesyu")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0, 0.45098, 0.411765, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("5_dmxns")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0, 0.352941, 0.356863, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("6_3vbpa")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+modulate = Color(0, 0.352941, 0.356863, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_043lm")
+expand_mode = 1
+
+[node name="VSeparator" type="VSeparator" parent="Content/MarginContainer/HBoxContainer2/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_iesyu")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Content/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="TextureRect" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_iesyu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleContainer" type="MarginContainer" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 16
+size_flags_vertical = 0
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="Content/VBoxContainer"]
+[node name="Title" type="Label" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Which Way Captain?"
 label_settings = ExtResource("2_043lm")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/VBoxContainer"]
-modulate = Color(0.0117647, 0.498039, 0.54902, 0.27451)
+[node name="Buttons" type="VBoxContainer" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("3_043lm")
-
-[node name="TextureRect2" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_iesyu")
-
-[node name="TextureRect3" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_iuxab")
-
-[node name="TextureRect4" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_dmxns")
-
-[node name="TextureRect5" type="TextureRect" parent="Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("7_3vbpa")
-
-[node name="NewGame" type="Button" parent="Content/VBoxContainer"]
+[node name="NewGame" type="Button" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.0156863, 0.768627, 0.85098, 1)
 theme_override_colors/font_hover_color = Color(0.0156863, 0.768627, 0.85098, 1)
@@ -82,4 +145,4 @@ theme_override_styles/normal_mirrored = ExtResource("4_pbjm4")
 theme_override_styles/normal = ExtResource("4_pbjm4")
 text = "Weigh Anchor!"
 
-[connection signal="pressed" from="Content/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer/VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
