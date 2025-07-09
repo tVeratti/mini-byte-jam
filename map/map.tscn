@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=16 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
 [ext_resource type="PackedScene" uid="uid://bcvlm28nt0iwi" path="res://encounter/battle/battle.tscn" id="2_kffv2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://cviwov15lli60" path="res://map/tilt_shift.gdshader" id="4_7lyie"]
 [ext_resource type="PackedScene" uid="uid://by6rny86nx30p" path="res://map/end_window/end_window.tscn" id="5_e8e5r"]
 [ext_resource type="Shader" uid="uid://dkv0i4425ve43" path="res://map/ocean.gdshader" id="7_5jdw0"]
+[ext_resource type="PackedScene" uid="uid://c4renh8o377vi" path="res://main/volume_slider.tscn" id="8_112ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5jdw0"]
 shader = ExtResource("4_7lyie")
@@ -72,6 +73,11 @@ alignment = 2
 
 [node name="PlayerStatsHud" parent="Interface/HUD/Layout" instance=ExtResource("2_lgq1i")]
 layout_mode = 2
+
+[node name="VolumeSlider" parent="Interface/HUD" instance=ExtResource("8_112ik")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
 [node name="Grid" parent="." instance=ExtResource("3_iw27f")]
 unique_name_in_owner = true

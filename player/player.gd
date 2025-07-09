@@ -65,7 +65,7 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 			
 		Tile.Types.SCOUT:
 			grid.radius_scouted.emit(coordinates, 5, true)
-			AudioManager.play_audio.emit(buff_audio.pick_random(), -20.0, false)
+			AudioManager.play_audio.emit(buff_audio.pick_random(), -10.0, false)
 			
 		Tile.Types.BATTLE:
 			pass

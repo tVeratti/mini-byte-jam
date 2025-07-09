@@ -40,3 +40,5 @@ extends Node3D
 func _ready() -> void:
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	SceneManager.main_root = scene_root
+	
+	AudioManager.play_audio.emit(load("uid://dsfc732mmff8n"), -20.0, false)

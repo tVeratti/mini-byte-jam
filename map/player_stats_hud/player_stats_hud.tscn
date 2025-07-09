@@ -35,14 +35,19 @@ mouse_filter = 2
 theme = SubResource("Theme_aejf3")
 script = ExtResource("1_p5avf")
 
-[node name="VBoxContainer" type="GridContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="HealthIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="HealthIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -50,7 +55,7 @@ texture = ExtResource("5_yat35")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HealthProgress" type="ProgressBar" parent="VBoxContainer"]
+[node name="HealthProgress" type="ProgressBar" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
@@ -61,7 +66,7 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="AttackIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="AttackIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -69,7 +74,7 @@ texture = ExtResource("6_7q2d7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AttackProgress" type="ProgressBar" parent="VBoxContainer"]
+[node name="AttackProgress" type="ProgressBar" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -80,7 +85,7 @@ max_value = 1.0
 value = 1.0
 show_percentage = false
 
-[node name="MoraleIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="MoraleIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -88,7 +93,7 @@ texture = ExtResource("4_yg1bh")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MoraleProgress" type="ProgressBar" parent="VBoxContainer"]
+[node name="MoraleProgress" type="ProgressBar" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -99,23 +104,28 @@ max_value = 1.0
 value = 0.6
 show_percentage = false
 
-[node name="FatigueIcon" type="TextureRect" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 25)
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("6_jbggd")
-expand_mode = 1
-stretch_mode = 5
+size_flags_horizontal = 8
+size_flags_vertical = 8
+columns = 2
 
-[node name="FatigueProgress" type="ProgressBar" parent="VBoxContainer"]
+[node name="FatigueProgress" type="ProgressBar" parent="HBoxContainer/GridContainer"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_jbggd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yat35")
 max_value = 1.0
-value = 1.0
+value = 0.8
+fill_mode = 1
 show_percentage = false
+
+[node name="FatigueIcon" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_jbggd")
+expand_mode = 1
+stretch_mode = 5

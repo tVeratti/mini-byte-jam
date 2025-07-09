@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4renh8o377vi"]
+
+[ext_resource type="Script" uid="uid://8qqk2odxjo6u" path="res://main/volume_slider.gd" id="1_808mm"]
+[ext_resource type="Texture2D" uid="uid://b3fvarh5tpsip" path="res://assets/volume.png" id="2_4h50i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h50i"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.54902, 0.447059, 1)
+
+[node name="VolumeSlider" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("1_808mm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Volume" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_4h50i")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_4h50i")
+expand_mode = 1
+
+[connection signal="value_changed" from="HBoxContainer/Volume" to="." method="_on_volume_value_changed"]

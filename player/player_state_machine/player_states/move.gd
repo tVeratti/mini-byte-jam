@@ -25,7 +25,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(player, "global_position", target_position, 0.5)
 	tween.tween_callback(_goto_next_state)
-	AudioManager.play_audio.emit(move_audio.pick_random())
+	AudioManager.play_audio.emit(move_audio.pick_random(), 5.0)
 
 
 func update(delta:float) -> void:

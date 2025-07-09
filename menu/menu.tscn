@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cc02vevc3mc8q"]
+[gd_scene load_steps=18 format=3 uid="uid://cc02vevc3mc8q"]
 
 [ext_resource type="Script" uid="uid://dsbf2who6sb23" path="res://menu/menu.gd" id="1_j0t7f"]
 [ext_resource type="LabelSettings" uid="uid://bfqctg5xliu8o" path="res://assets/title_label_settings.tres" id="2_043lm"]
-[ext_resource type="Texture2D" uid="uid://b2gx50rhqscbg" path="res://menu/Tx_Flag.png" id="2_iesyu"]
 [ext_resource type="Texture2D" uid="uid://dae03ox6o0lxn" path="res://grid/tile/assets/battle.png" id="3_043lm"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="3_pbjm4"]
 [ext_resource type="Texture2D" uid="uid://cs6mjv22njc1d" path="res://grid/tile/assets/fatigue.png" id="4_iesyu"]
@@ -13,11 +12,17 @@
 [ext_resource type="StyleBox" uid="uid://bm0ompjupe7go" path="res://menu/button_style_hover.tres" id="5_svuvw"]
 [ext_resource type="Texture2D" uid="uid://bfj3cwx5kspn8" path="res://grid/tile/assets/jig.png" id="6_3vbpa"]
 [ext_resource type="Texture2D" uid="uid://cmatcvxlnlqyf" path="res://grid/tile/assets/morale.png" id="6_dmxns"]
+[ext_resource type="Shader" uid="uid://dcx06w1tn4hbo" path="res://menu/flag.gdshader" id="8_dmxns"]
+[ext_resource type="Texture2D" uid="uid://l15owho1pkq4" path="res://assets/logo.png" id="9_dmxns"]
+[ext_resource type="PackedScene" uid="uid://c4renh8o377vi" path="res://main/volume_slider.tscn" id="15_3vbpa"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_iesyu"]
 color = Color(0, 0.219608, 0.25098, 1)
 thickness = 2
 vertical = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vbpa"]
+shader = ExtResource("8_dmxns")
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_j0t7f")
@@ -101,10 +106,11 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 32
 
 [node name="TextureRect" type="TextureRect" parent="Content/MarginContainer/HBoxContainer2/HBoxContainer"]
+material = SubResource("ShaderMaterial_3vbpa")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_iesyu")
+texture = ExtResource("9_dmxns")
 expand_mode = 1
 stretch_mode = 5
 
@@ -144,5 +150,12 @@ theme_override_styles/pressed = ExtResource("5_juveg")
 theme_override_styles/normal_mirrored = ExtResource("4_pbjm4")
 theme_override_styles/normal = ExtResource("4_pbjm4")
 text = "Weigh Anchor!"
+
+[node name="VolumeSlider" parent="Content" instance=ExtResource("15_3vbpa")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
 
 [connection signal="pressed" from="Content/MarginContainer/HBoxContainer2/HBoxContainer/TitleContainer/VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
