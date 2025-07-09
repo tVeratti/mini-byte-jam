@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0jbti14br3yu"]
+[gd_scene load_steps=10 format=3 uid="uid://c0jbti14br3yu"]
 
 [ext_resource type="Script" uid="uid://o6aso7doejm6" path="res://grid/tile/tile.gd" id="1_ag6h3"]
 [ext_resource type="PackedScene" uid="uid://ccutjlu744503" path="res://grid/tile/tile_icon.tscn" id="2_ck2n5"]
 [ext_resource type="ArrayMesh" uid="uid://bvao23nv816mn" path="res://grid/tile/assets/rock_meshes/rock_03_mesh.tres" id="2_ufdc4"]
+[ext_resource type="ArrayMesh" uid="uid://5q1xftmuwk17" path="res://grid/tile/assets/rock_meshes/rock_mesh_01.tres" id="3_sjlhg"]
+[ext_resource type="ArrayMesh" uid="uid://ccbdh7eojv87e" path="res://grid/tile/assets/rock_meshes/rock_mesh_02.tres" id="4_5xuty"]
+[ext_resource type="ArrayMesh" uid="uid://bvp1fcfyly5aq" path="res://grid/tile/assets/rock_meshes/rock_mesh_04.tres" id="5_st4cl"]
+[ext_resource type="ArrayMesh" uid="uid://ssgnlw38o5wk" path="res://grid/tile/assets/rock_meshes/rock_mesh_05.tres" id="6_b8mql"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ufdc4"]
 
@@ -11,7 +15,7 @@ resource_local_to_scene = true
 
 [node name="Tile" type="Node3D"]
 script = ExtResource("1_ag6h3")
-rock_meshes = Array[Mesh]([ExtResource("2_ufdc4")])
+rock_meshes = Array[Mesh]([ExtResource("2_ufdc4"), ExtResource("3_sjlhg"), ExtResource("4_5xuty"), ExtResource("5_st4cl"), ExtResource("6_b8mql")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ufdc4")

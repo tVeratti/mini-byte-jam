@@ -26,7 +26,6 @@ const ICON_MAP:Dictionary[int, Texture] = {
 
 const COLOR_MAP:Dictionary[int, Color] = {
 	Types.VISITED: Palette.TEAL_01,
-	Types.IMPASSABLE: Color.DARK_GRAY,
 	Types.BUFF_ATTACK: Palette.TEAL_04,
 	Types.BUFF_MORALE: Palette.TEAL_04,
 	Types.HEAL: Palette.TEAL_05,
@@ -67,6 +66,8 @@ func _set_type(value:Types) -> void:
 	
 	if type == Types.IMPASSABLE:
 		mesh_instance_3d.mesh = rock_meshes.pick_random()
+		_set_color(Color.DIM_GRAY.lightened(randf_range(0.0, 0.5)))
+		mesh_instance_3d.rotation_degrees.y = randf_range(0, 360)
 
 
 func _set_color(value:Color) -> void:
