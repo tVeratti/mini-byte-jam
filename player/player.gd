@@ -31,7 +31,17 @@ func _process(_delta):
 	state_label.text = player_state_machine.state.name
 
 
+func reset() -> void:
+	player_stats.queue_free()
+	
+	player_stats = PlayerStats.new()
+	add_child(player_stats)
+	player_stats.owner = self
+	player_stats.notifications = player_notifications
+
+
 func _on_coordinates_changed(coordinates:Vector3) -> void:
+	player_stats.nautical_miles_traveled += 1
 	player_stats.increase_fatigue()
 	
 	var grid:Grid = get_tree().get_first_node_in_group("tile_grid")
@@ -51,6 +61,7 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 		Tile.Types.BATTLE:
 			pass
 		Tile.Types.GOAL:
+			player_stats.treasures_found += 1
 			player_stats.reduce_fatigue()
 		Tile.Types.FATIGUE_REDUCTION:
 			player_stats.reduce_fatigue(0.1)

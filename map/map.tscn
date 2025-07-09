@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://uxxs8yvjpn8m"]
+[gd_scene load_steps=15 format=3 uid="uid://uxxs8yvjpn8m"]
 
 [ext_resource type="Script" uid="uid://rhagi80rwqva" path="res://map/map.gd" id="1_p5pve"]
 [ext_resource type="PackedScene" uid="uid://bcvlm28nt0iwi" path="res://encounter/battle/battle.tscn" id="2_kffv2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blho1i521pjl4" path="res://grid/grid.tscn" id="3_iw27f"]
 [ext_resource type="PackedScene" uid="uid://c43iodsc02gpc" path="res://encounter/jig/jig.tscn" id="3_kxmgb"]
 [ext_resource type="Shader" uid="uid://cviwov15lli60" path="res://map/tilt_shift.gdshader" id="4_7lyie"]
+[ext_resource type="PackedScene" uid="uid://by6rny86nx30p" path="res://map/end_window/end_window.tscn" id="5_e8e5r"]
 [ext_resource type="Shader" uid="uid://dkv0i4425ve43" path="res://map/ocean.gdshader" id="7_5jdw0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5jdw0"]
@@ -39,6 +40,7 @@ script = ExtResource("1_p5pve")
 battle_scene = ExtResource("2_kffv2")
 jig_scene = ExtResource("3_kxmgb")
 goal_window_scene = ExtResource("3_7lyie")
+end_window_scene = ExtResource("5_e8e5r")
 
 [node name="Interface" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

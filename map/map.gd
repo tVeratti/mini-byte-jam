@@ -5,6 +5,7 @@ extends Node
 @export var battle_scene:PackedScene
 @export var jig_scene:PackedScene
 @export var goal_window_scene:PackedScene
+@export var end_window_scene:PackedScene
 
 
 var load_player_stats:PlayerStats
@@ -28,6 +29,7 @@ func _ready() -> void:
 	
 	grid.encounter_started.connect(_on_encounter_started)
 	grid.goal_entered.connect(_on_goal_entered)
+	player.player_stats.health_zero.connect(_on_player_health_zero)
 
 
 func _on_encounter_started(type:Encounter.Types, level:int) -> void:
@@ -57,3 +59,8 @@ func _on_encounter_ended(result:Encounter.Results, type:Encounter.Types) -> void
 func _on_goal_entered() -> void:
 	var goal_window = goal_window_scene.instantiate()
 	interface.add_child(goal_window)
+
+
+func _on_player_health_zero() -> void:
+	var end_window = end_window_scene.instantiate()
+	interface.add_child(end_window)

@@ -15,20 +15,28 @@ const MAX_MORALE:int = 100
 const FATIGUE_REDUCTION_MULTIPLIER:float = 0.5
 
 
+var health_max:int = MAX_HEALTH
+var health_current:int = MAX_HEALTH
+
+# Encounter Stats
 var fatigue:int = 1
 var attack:int = 5
 var morale:int = 5
 
-var health_max:int = MAX_HEALTH
-var health_current:int = MAX_HEALTH
+# Fun Stats
+var battles_won:int = 0
+var jigs_won:int = 0
+var treasures_found:int = 0
+var nautical_miles_traveled:int = 0
 
 
 var notifications:PlayerNotifications
 
 
 func _ready() -> void:
-	await owner.ready
-	notifications = owner.player_notifications
+	if is_instance_valid(owner):
+		await owner.ready
+		notifications = owner.player_notifications
 
 
 func take_damage(amount:int) -> void:
