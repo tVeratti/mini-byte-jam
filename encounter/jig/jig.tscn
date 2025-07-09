@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://c43iodsc02gpc"]
+[gd_scene load_steps=16 format=3 uid="uid://c43iodsc02gpc"]
 
 [ext_resource type="Script" uid="uid://ksaedy85vutt" path="res://encounter/jig/jig.gd" id="1_mxy8j"]
 [ext_resource type="PackedScene" uid="uid://d0u1uysuexi8w" path="res://encounter/jig/jig_direction.tscn" id="2_q6ne0"]
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="3_s6ojh"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_scq0y"]
+[ext_resource type="AudioStream" uid="uid://1wwv7mp74fqv" path="res://assets/sounds/tam_01.wav" id="4_helyc"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="5_h2mwq"]
+[ext_resource type="AudioStream" uid="uid://c7tio66lh0p0y" path="res://assets/sounds/tam_02.wav" id="5_nq7yr"]
 [ext_resource type="Shader" uid="uid://dye45fsapwka5" path="res://assets/shaders/lines.gdshader" id="7_sum53"]
 [ext_resource type="LabelSettings" uid="uid://u6018fifyd8o" path="res://assets/label.tres" id="8_helyc"]
 
@@ -52,6 +54,8 @@ grow_vertical = 2
 script = ExtResource("1_mxy8j")
 jig_direction_scene = ExtResource("2_q6ne0")
 result_scene = ExtResource("3_s6ojh")
+note_audio = ExtResource("4_helyc")
+intro_audio = ExtResource("5_nq7yr")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2

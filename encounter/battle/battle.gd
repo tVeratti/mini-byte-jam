@@ -14,6 +14,7 @@ const MOVE_SPEED_MAX:float = 800.0
 
 
 @export var result_scene:PackedScene
+@export var success_audio:AudioStream
 
 
 @onready var attack:ColorRect = %Attack
@@ -32,6 +33,8 @@ var freeze_input:bool = false
 
 
 func _ready() -> void:
+	AudioManager.play_audio.emit(intro_audio)
+	
 	var player:Player = get_tree().get_first_node_in_group("player")
 	player_stats = player.player_stats
 	
@@ -114,7 +117,7 @@ func _end_battle() -> void:
 	if input_position + NEEDLE_WIDTH >= attack_position_left and input_position - NEEDLE_WIDTH <= attack_position_right:
 		# Within ATTACK range
 		result = Results.SUCCESS
-		
+		AudioManager.play_audio.emit(success_audio, -10.0)
 	else:
 		# FAIL
 		result = Results.FAIL

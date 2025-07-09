@@ -9,6 +9,10 @@ signal coordinates_changed(coordinates:Vector3)
 const MESH_TURN_SPEED:float = 10.0
 
 
+@export var buff_audio:Array[AudioStream] = []
+@export var goal_audio:AudioStream
+
+
 var previous_mesh_lookat:Vector3
 
 
@@ -52,17 +56,25 @@ func _on_coordinates_changed(coordinates:Vector3) -> void:
 			pass
 		Tile.Types.BUFF_ATTACK:
 			player_stats.buff_attack(1)
+			
 		Tile.Types.BUFF_MORALE:
 			player_stats.buff_morale(1)
+			
 		Tile.Types.HEAL:
 			player_stats.heal(1)
+			
 		Tile.Types.SCOUT:
 			grid.radius_scouted.emit(coordinates, 5, true)
+			AudioManager.play_audio.emit(buff_audio.pick_random(), -20.0, false)
+			
 		Tile.Types.BATTLE:
 			pass
+			
 		Tile.Types.GOAL:
 			player_stats.treasures_found += 1
 			player_stats.reduce_fatigue()
+			AudioManager.play_audio.emit(goal_audio, -10.0, false)
+			
 		Tile.Types.FATIGUE_REDUCTION:
 			player_stats.reduce_fatigue(0.1)
 	

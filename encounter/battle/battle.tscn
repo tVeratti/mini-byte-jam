@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcvlm28nt0iwi"]
+[gd_scene load_steps=13 format=3 uid="uid://bcvlm28nt0iwi"]
 
 [ext_resource type="Script" uid="uid://bg1h072hwja02" path="res://encounter/battle/battle.gd" id="1_mqutd"]
 [ext_resource type="PackedScene" uid="uid://c2x5nb8xutljl" path="res://encounter/battle/battle_result.tscn" id="2_tiqy5"]
+[ext_resource type="AudioStream" uid="uid://bnnanitrufm0f" path="res://assets/sounds/sword_drum_01.wav" id="3_426p7"]
 [ext_resource type="FontFile" uid="uid://bw4edb43exu17" path="res://assets/fonts/PirataOne-Regular.ttf" id="3_qubjc"]
 [ext_resource type="FontFile" uid="uid://nieaekycl7wi" path="res://assets/fonts/SignikaNegative-VariableFont_wght.ttf" id="4_4mnim"]
 [ext_resource type="Texture2D" uid="uid://jadm4msu5o3p" path="res://grid/tile/assets/arrow.png" id="4_v5t24"]
@@ -46,6 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mqutd")
 result_scene = ExtResource("2_tiqy5")
+success_audio = ExtResource("3_426p7")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2

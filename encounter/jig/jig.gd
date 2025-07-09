@@ -12,6 +12,7 @@ const TIMER_SPEED:float = 1.0
 
 @export var jig_direction_scene:PackedScene
 @export var result_scene:PackedScene
+@export var note_audio:AudioStream
 
 
 var player_stats:PlayerStats
@@ -35,6 +36,8 @@ var within_range:Array[JigDirection] = []
 
 
 func _ready() -> void:
+	AudioManager.play_audio.emit(intro_audio)
+	
 	player = get_tree().get_first_node_in_group("player")
 	player_stats = player.player_stats
 	
@@ -83,6 +86,7 @@ func _on_direction_changed(direction:Vector3) ->void:
 				jig_node.animate_success()
 				within_range.erase(jig_node)
 				has_one_match = true
+				AudioManager.play_audio.emit(note_audio, -10.0, false)
 				
 				success_count += 1
 				if success_count >= max_moves:

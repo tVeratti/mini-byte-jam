@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://bltwcei6bd7hh"]
+[gd_scene load_steps=20 format=3 uid="uid://bltwcei6bd7hh"]
 
 [ext_resource type="Script" uid="uid://crielhnbmxmka" path="res://player/input_component.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bscmwh0y18f5x" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="AudioStream" uid="uid://c0gk5ccd0sb8l" path="res://assets/sounds/buff_02.wav" id="2_32hag"]
 [ext_resource type="Script" uid="uid://ci24nk0o7cd15" path="res://player/player_stats.gd" id="3_rgyib"]
+[ext_resource type="AudioStream" uid="uid://cf2v2jo4hdxw2" path="res://assets/sounds/buff_03.wav" id="3_tqiix"]
 [ext_resource type="Script" uid="uid://d37xvjqwo7p6g" path="res://player/player_state_machine/player_state_machine.gd" id="3_yw30f"]
+[ext_resource type="AudioStream" uid="uid://d11j1gcmeeyjh" path="res://assets/sounds/buff_04.wav" id="4_e7oew"]
 [ext_resource type="Script" uid="uid://d325fhdya61qw" path="res://player/player_state_machine/player_states/idle.gd" id="4_qjkh3"]
 [ext_resource type="Script" uid="uid://ck373hlpxuirp" path="res://player/player_state_machine/player_states/move_intent.gd" id="5_boad6"]
 [ext_resource type="Script" uid="uid://dm56ugqm67vwi" path="res://player/player_state_machine/player_states/move.gd" id="5_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://bur22wfbwp5b2" path="res://assets/sounds/coins_01.wav" id="5_tqiix"]
 [ext_resource type="Script" uid="uid://d1biy3n4gpulo" path="res://player/direction_intent_marker.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://comhou0m6hmob" path="res://player/player_state_machine/player_states/battle.gd" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://dwbl70wqotcrg" path="res://player/player_notifications.gd" id="9_8t03j"]
@@ -22,6 +26,8 @@ shading_mode = 0
 
 [node name="Player" type="MeshInstance3D" groups=["player"]]
 script = ExtResource("1_rkbax")
+buff_audio = Array[AudioStream]([ExtResource("2_32hag"), ExtResource("3_tqiix"), ExtResource("4_e7oew")])
+goal_audio = ExtResource("5_tqiix")
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("1_oul6g")
