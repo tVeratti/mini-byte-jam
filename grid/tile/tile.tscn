@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://o6aso7doejm6" path="res://grid/tile/tile.gd" id="1_ag6h3"]
 [ext_resource type="PackedScene" uid="uid://ccutjlu744503" path="res://grid/tile/tile_icon.tscn" id="2_ck2n5"]
-[ext_resource type="ArrayMesh" uid="uid://bmjvv12xnwh6h" path="res://grid/tile/assets/rock_meshes/rock_01_mesh.tres" id="2_ufdc4"]
+[ext_resource type="ArrayMesh" uid="uid://bvao23nv816mn" path="res://grid/tile/assets/rock_meshes/rock_03_mesh.tres" id="2_ufdc4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ufdc4"]
 

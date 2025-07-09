@@ -15,7 +15,7 @@ shader_parameter/limit = 0.5
 shader_parameter/blur = 1.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_kffv2"]
-size = Vector2(50, 50)
+size = Vector2(70, 70)
 subdivide_width = 32
 subdivide_depth = 32
 

@@ -65,8 +65,8 @@ func _set_type(value:Types) -> void:
 	if COLOR_MAP.has(type):
 		_set_color(COLOR_MAP[type])
 	
-	#if type == Types.IMPASSABLE:
-		#mesh_instance_3d.mesh = rock_meshes.pick_random()
+	if type == Types.IMPASSABLE:
+		mesh_instance_3d.mesh = rock_meshes.pick_random()
 
 
 func _set_color(value:Color) -> void:

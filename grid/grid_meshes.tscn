@@ -1,5 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://nks0xww7yaic"]
 
+[ext_resource type="ArrayMesh" uid="uid://bvao23nv816mn" path="res://grid/tile/assets/rock_meshes/rock_03_mesh.tres" id="1_i1fj5"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_hcfg3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mq4l"]
@@ -33,9 +35,6 @@ albedo_color = Color(0.800227, 1, 0.644084, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_8fpve"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arwkr"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_66i1r"]
-size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8s2o1"]
 
@@ -78,8 +77,8 @@ mesh = SubResource("BoxMesh_8fpve")
 surface_material_override/0 = SubResource("StandardMaterial3D_arwkr")
 
 [node name="Impassable" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("PrismMesh_66i1r")
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 0)
+mesh = ExtResource("1_i1fj5")
 
 [node name="Fatigue" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8s2o1")
