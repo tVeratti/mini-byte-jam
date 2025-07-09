@@ -6,7 +6,7 @@ const LEVEL_WEIGHT:float = 10.0
 
 const TRACK_WIDTH:int = 600
 const MIN_MOVES:int = 4
-const MAX_MOVES:int = 12
+const MAX_MOVES:int = 20
 const TIMER_SPEED:float = 1.0
 
 
@@ -38,8 +38,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	player_stats = player.player_stats
 	
-	var morale_percentage:float = float(player_stats.morale) / float(PlayerStats.MAX_MORALE)
-	max_moves = clamp(morale_percentage * MAX_MOVES, MIN_MOVES, MAX_MOVES)
+	max_moves = clamp(player_stats.treasures_found, MIN_MOVES, MAX_MOVES)
 	
 	player.input_component.accept_pressed.connect(_on_input_accept)
 	player.input_component.direction_changed.connect(_on_direction_changed)

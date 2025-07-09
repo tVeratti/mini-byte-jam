@@ -12,6 +12,9 @@ const ICON_HEAL_UID:String = "uid://cmatcvxlnlqyf"
 const ICON_SCOUT_UID:String = "uid://cyaddnhljuwx2"
 const ICON_FATIGUE_UID:String = "uid://gvrnvcj61ihu"
 const ICON_JIG_UID:String = "uid://bfj3cwx5kspn8"
+const ICON_GOAL_UID:String = "uid://broyicinkbdrh"
+
+const SHINE_SHADER_UID:String = "uid://cy364oju0514s"
 
 
 const ICON_MAP:Dictionary[int, Texture] = {
@@ -21,7 +24,8 @@ const ICON_MAP:Dictionary[int, Texture] = {
 	Types.HEAL: preload(ICON_HEAL_UID),
 	Types.SCOUT: preload(ICON_SCOUT_UID),
 	Types.FATIGUE_REDUCTION: preload(ICON_FATIGUE_UID),
-	Types.JIG: preload(ICON_JIG_UID)
+	Types.JIG: preload(ICON_JIG_UID),
+	Types.GOAL: preload(ICON_GOAL_UID)
 }
 
 const COLOR_MAP:Dictionary[int, Color] = {
@@ -32,7 +36,8 @@ const COLOR_MAP:Dictionary[int, Color] = {
 	Types.FATIGUE_REDUCTION: Palette.TEAL_05,
 	Types.SCOUT: Palette.YELLOW_01,
 	Types.BATTLE: Palette.BLUE_03,
-	Types.JIG:  Palette.BLUE_03
+	Types.JIG:  Palette.BLUE_03,
+	Types.GOAL: Palette.YELLOW_02
 }
 
 
@@ -68,6 +73,10 @@ func _set_type(value:Types) -> void:
 		mesh_instance_3d.mesh = rock_meshes.pick_random()
 		_set_color(Color.DIM_GRAY.lightened(randf_range(0.0, 0.5)))
 		mesh_instance_3d.rotation_degrees.y = randf_range(0, 360)
+	elif type == Types.GOAL:
+		var shine_pass:ShaderMaterial = ShaderMaterial.new()
+		shine_pass.shader = load(SHINE_SHADER_UID)
+		mesh_instance_3d.get_active_material(0).next_pass = shine_pass
 
 
 func _set_color(value:Color) -> void:

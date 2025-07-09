@@ -10,8 +10,8 @@ const NOISE_THRESHOLDS:Dictionary[float, TileGroups] = {
 	0.46: TileGroups.BLOCK,
 	0.50: TileGroups.RARE,
 	0.60: TileGroups.EMPTY,
-	0.85: TileGroups.BUFF,
-	0.92: TileGroups.ENCOUNTER,
+	0.90: TileGroups.BUFF,
+	0.95: TileGroups.ENCOUNTER,
 	1.00: TileGroups.UTILITY
 }
 const TILE_GROUP_MAP:Dictionary[TileGroups, Array] = {

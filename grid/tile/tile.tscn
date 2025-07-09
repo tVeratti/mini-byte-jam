@@ -23,3 +23,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ag6h3")
 
 [node name="Icon" parent="." instance=ExtResource("2_ck2n5")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.51, 0)
+modulate = Color(0.891566, 0.761749, 2.31028e-06, 1)

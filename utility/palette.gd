@@ -16,3 +16,4 @@ const BLUE_04: = Color("#04d9d9")
 
 
 const YELLOW_01: = Color("#deff85")
+const YELLOW_02: = Color("#ffe368")
