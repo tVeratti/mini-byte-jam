@@ -36,6 +36,7 @@ label_settings = ExtResource("2_qlno6")
 horizontal_alignment = 1
 
 [node name="NextMap" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
